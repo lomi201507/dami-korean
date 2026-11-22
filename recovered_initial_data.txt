@@ -1,0 +1,40 @@
+Created At: 2026-11-15T10:26:30+09:00
+Completed At: 2026-11-15T10:26:34+09:00
+Created At: 2026-11-15T10:26:30+09:00
+Completed At: 2026-11-15T10:26:34+09:00
+Command exited with code 0.
+
+Command output:
+/**
+ * DAMI KOREAN - Upgraded Visual Data Module
+ * Korean Language Learning Content & Brand Data
+ * Created for Teacher Kim Dami (김다미 한국어 선생님)
+ */
+
+const DAMI_DATA = {
+  // Brand Mottos & Inspiring Quotes
+  mottos: {
+    heroTag: "언어로 사람과 세상을 더 가까이 잇는 김다미",
+    mainQuote: "배움은 나를 성장시키고, 가르침은 세상을 따뜻하게 만든다.",
+    subQuote: "언어는 사람을 연결하고, 문화는 세상을 넓혀준다.",
+    lifePhilosophy: "궁금하고, 배우고, 만들고, 나누는 삶",
+    aiQuote: "AI는 더 멀리, 더 깊이 생각할 수 있게 도와주는 좋은 동료예요.",
+    questionQuote: "좋은 질문이 더 좋은 세상을 만든다."
+  },
+
+  // Expanded Professional Teacher Profile
+  teacherProfile: {
+    name: "김다미",
+    title: "Teacher Dami | Korean Language Specialist (한국어 교육 전문가)",
+    slogan: "지금도, 그리고 앞으로도, 좋은 선생님이 되고 싶어요.",
+    credentials: [
+      { icon: "🎓", title: "국가공인 한국어교원 자격 취득", desc: "국가 공인 한국어교원 자격 보유 (2024.05) 및 학부 한국어실습 만점 졸업" },
+      { icon: "🏫", title: "대학교 부설 어학당 2,500시간+", desc: "성신여대 · 명지대 · 경동대 · 서정대 어학당 초급부터 고급, TOPIK 대비반 2,500시간+ 실전 교수 경력" },
+      { icon: "📚", title: "고려대 교육대학원 All A+ & 장학금", desc: "한국어교육전공 석사 과정 (3학기 전 과목 All A+ 100점 만점, 2학기 연속 장학금 수혜)" },
+      { icon: "✍️", title: "고려대 대학원 조교 & 전공대표", desc: "교수 추천 학부생 논문 서문 쓰기 지원 조교 프로그램 수행 & 대학원 전공대표 활동" },
+      { icon: "💯", title: "학부대표 & 서술 답안 우수답안 채택", desc: "한국어다문화학부 학부대표 역임, 서술 답안 우수답안 선정 & 실습 후기 공모전 최우수상(1위) 수상" },
+      { icon: "🌐", title: "전) 해외 영업·마케팅 20년+", desc: "외국계 기업 20년+ 근무 경험, 싱가포르 거주 및 글로벌 비즈니스 영어 구사로 학습자 눈높이 맞춤 설명" }
+    ],
+    stats: [
+      { label: "어학당 강의 시간", value: "2,500시간+" },
+      { label: "글로벌 마케팅 경력", val
