@@ -47,6 +47,7 @@
         <a href="#philosophy" class="nav-link">Philosophy</a>
         <a href="#learn" class="nav-link">Learn Korean</a>
         <a href="#chunks" class="nav-link">Chunks</a>
+        <a href="#storybook" class="nav-link">Storybook</a>
         <a href="#reviews" class="nav-link">Student Reviews</a>
         <a href="#ai-korean" class="nav-link">AI × Korean</a>
         <a href="#books" class="nav-link">Books</a>
@@ -300,7 +301,27 @@
     </section>
 
     <!-- =========================================================================
-         11. DAMI KOREAN BOOKS (PRD [19. KOREAN BOOKS])
+         11. DAMI KOREAN STORYBOOK (이야기북 시리즈)
+         ========================================================================= -->
+    <section class="storybook-section" id="storybook">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Interactive Webtoon Storybook</span>
+          <h2 class="section-title">다미의 한국어 이야기북 (Storybook Series)</h2>
+          <p class="section-desc">
+            웹툰으로 재미있게 읽고, 단서를 찾아 함께 추리하는 실전 한국어 이야기 시리즈입니다.<br>
+            이야기를 클릭하시면 만화 원본, 인터랙티브 추리 퀴즈, 핵심 어휘와 문법을 함께 공부하실 수 있습니다.
+          </p>
+        </div>
+
+        <div class="storybook-grid" id="storybookGrid">
+          <!-- Rendered dynamically by main.js from DAMI_DATA.storybooks -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         12. DAMI KOREAN BOOKS (PRD [19. KOREAN BOOKS])
          ========================================================================= -->
     <section class="books-section" id="books">
       <div class="container">
@@ -388,6 +409,7 @@
           <a href="#philosophy">Teaching Philosophy</a>
           <a href="#learn">Learn Korean</a>
           <a href="#chunks">Korean Chunks</a>
+          <a href="#storybook">Korean Storybook</a>
           <a href="#reviews">Student Reviews</a>
           <a href="#ai-korean">AI × Korean</a>
           <a href="#books">DAMI Books</a>
@@ -413,6 +435,20 @@
       </button>
       <div class="modal-body" id="modalBody">
         <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       15. MODAL VIEWER FOR STORYBOOK SERIES
+       ========================================================================= -->
+  <div class="modal-overlay" id="storybookModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container modal-container-lg">
+      <button class="modal-close" id="storybookCloseBtn" aria-label="닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="modal-body" id="storybookModalBody">
+        <!-- Injected dynamically by main.js -->
       </div>
     </div>
   </div>

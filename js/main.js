@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDiscourse();
   renderReviews();
   renderAIEducation();
+  renderStorybooks();
   renderBooks();
   initModal();
   initContactForm();
@@ -365,7 +366,174 @@ function renderAIEducation() {
 }
 
 /* ==========================================================================
-   11. DAMI Korean Books (교재 라인업 + Coming Soon)
+   11. 이야기북 시리즈 (Storybook Series) 렌더링 & 인터랙티브 뷰어
+   ========================================================================== */
+function renderStorybooks() {
+  const container = document.getElementById('storybookGrid');
+  if (!container || !DAMI_DATA.storybooks) return;
+
+  container.innerHTML = DAMI_DATA.storybooks.map((story, idx) => `
+    <div class="storybook-card" data-story-idx="${idx}">
+      <div class="sb-card-thumb-wrap">
+        <img src="${story.image}" alt="${story.title}" class="sb-card-thumb">
+        <span class="sb-episode-badge">${story.episode}</span>
+        <span class="sb-level-badge">${story.badge}</span>
+      </div>
+      <div class="sb-card-body">
+        <span class="sb-rec-level">${story.level}</span>
+        <h3 class="sb-card-title">${story.title}</h3>
+        <p class="sb-card-summary">${story.summary}</p>
+        <div class="sb-card-footer">
+          <button class="btn btn-primary btn-sm sb-read-btn" data-story-idx="${idx}">
+            <span>이야기 읽고 추리하기</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // 클릭 이벤트 연결
+  container.querySelectorAll('.sb-read-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = btn.getAttribute('data-story-idx');
+      openStorybookModal(DAMI_DATA.storybooks[idx]);
+    });
+  });
+
+  container.querySelectorAll('.storybook-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = card.getAttribute('data-story-idx');
+      openStorybookModal(DAMI_DATA.storybooks[idx]);
+    });
+  });
+}
+
+function openStorybookModal(story) {
+  const modal = document.getElementById('storybookModal');
+  const modalBody = document.getElementById('storybookModalBody');
+  if (!modal || !modalBody || !story) return;
+
+  modalBody.innerHTML = `
+    <div class="sb-modal-header">
+      <div class="sb-modal-badges">
+        <span class="sb-episode-badge">${story.episode}</span>
+        <span class="sb-level-badge">${story.badge}</span>
+      </div>
+      <h2 class="sb-modal-title">${story.title}</h2>
+      <p class="sb-modal-summary">${story.summary}</p>
+    </div>
+
+    <!-- 1. 만화 웹툰 이미지 뷰어 -->
+    <div class="sb-viewer-img-box">
+      <img src="${story.image}" alt="${story.title}" class="sb-viewer-img">
+    </div>
+
+    <!-- 2. 린의 단서 수첩 -->
+    <div class="sb-clues-section">
+      <h3 class="sb-section-subtitle">📝 린의 단서 수첩</h3>
+      <div class="sb-clues-notebook">
+        ${story.clues.map(c => `
+          <div class="sb-clue-item">
+            <span class="sb-clue-check">✔</span>
+            <span class="sb-clue-text">${c}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- 3. 인터랙티브 추리 퀴즈 -->
+    <div class="sb-quiz-section">
+      <div class="sb-quiz-badge">🔍 잠깐, 추리! 여러분의 생각은?</div>
+      <h4 class="sb-quiz-question">${story.quiz.question}</h4>
+      <p class="sb-quiz-hint">💡 힌트: ${story.quiz.hint}</p>
+
+      <div class="sb-quiz-options">
+        ${story.quiz.options.map((opt, oIdx) => `
+          <button class="sb-quiz-opt-btn" data-correct="${opt.correct}" data-feedback="${encodeURIComponent(opt.feedback)}" data-opt-idx="${oIdx}">
+            ${opt.text}
+          </button>
+        `).join('')}
+      </div>
+
+      <div class="sb-quiz-result" id="sbQuizResult"></div>
+    </div>
+
+    <!-- 4. 이야기 속 핵심 문법 & 덩어리 표현 -->
+    <div class="sb-learning-section">
+      <h3 class="sb-section-subtitle">🎯 이 이야기에서 배운 핵심 문법</h3>
+      <div class="sb-grammar-list">
+        ${story.grammarPoints.map(g => `
+          <div class="sb-grammar-card">
+            <div class="sb-grammar-pattern">${g.pattern}</div>
+            <div class="sb-grammar-meaning">${g.meaning}</div>
+            <div class="sb-grammar-example"><strong>예문:</strong> "${g.example}"</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- 5. 필수 어휘장 -->
+    <div class="sb-learning-section">
+      <h3 class="sb-section-subtitle">📚 이야기 속 필수 어휘</h3>
+      <div class="sb-vocab-grid">
+        ${story.keyVocab.map(v => `
+          <div class="sb-vocab-card">
+            <div class="sb-vocab-word">${v.word} <span class="sb-vocab-eng">${v.meaning}</span></div>
+            <div class="sb-vocab-desc">${v.desc}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="modal-footer-action">
+      <button class="btn btn-primary" onclick="closeStorybookModal()">
+        확인하고 닫기
+      </button>
+    </div>
+  `;
+
+  // 퀴즈 옵션 버튼 클릭 이벤트
+  modalBody.querySelectorAll('.sb-quiz-opt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isCorrect = btn.getAttribute('data-correct') === 'true';
+      const feedback = decodeURIComponent(btn.getAttribute('data-feedback'));
+      const resultEl = document.getElementById('sbQuizResult');
+
+      // 기존 선택 스타일 초기화
+      modalBody.querySelectorAll('.sb-quiz-opt-btn').forEach(b => {
+        b.classList.remove('selected-correct', 'selected-wrong');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('selected-correct');
+        resultEl.className = 'sb-quiz-result result-correct';
+        resultEl.innerHTML = `<strong>🎉 정답입니다!</strong><br>${feedback}`;
+      } else {
+        btn.classList.add('selected-wrong');
+        resultEl.className = 'sb-quiz-result result-wrong';
+        resultEl.innerHTML = `<strong>🧐 아쉬워요! 다시 생각해 볼까요?</strong><br>${feedback}`;
+      }
+      resultEl.style.display = 'block';
+    });
+  });
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStorybookModal() {
+  const modal = document.getElementById('storybookModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+/* ==========================================================================
+   12. DAMI Korean Books (교재 라인업 + Coming Soon)
    ========================================================================== */
 function renderBooks() {
   const container = document.getElementById('booksGrid');
@@ -396,24 +564,29 @@ function renderBooks() {
 function initModal() {
   const modal = document.getElementById('learnModal');
   const closeBtn = document.getElementById('modalCloseBtn');
+  const sbModal = document.getElementById('storybookModal');
+  const sbCloseBtn = document.getElementById('storybookCloseBtn');
 
-  if (!modal) return;
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (sbCloseBtn) sbCloseBtn.addEventListener('click', closeStorybookModal);
 
   // 모달 배경 클릭 시 닫기
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+  if (sbModal) {
+    sbModal.addEventListener('click', (e) => {
+      if (e.target === sbModal) closeStorybookModal();
+    });
+  }
 
   // ESC 키로 닫기
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeModal();
+    if (e.key === 'Escape') {
+      if (modal && modal.classList.contains('open')) closeModal();
+      if (sbModal && sbModal.classList.contains('open')) closeStorybookModal();
     }
   });
 }

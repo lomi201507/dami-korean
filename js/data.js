@@ -486,5 +486,50 @@ const DAMI_DATA = {
         color: "navy"
       }
     ]
-  }
+  },
+
+  // 10. 이야기북 시리즈 (DAMI's Korean Storybook Series)
+  storybooks: [
+    {
+      id: "ep01",
+      episode: "Episode 01",
+      badge: "추리 & 일상 회화",
+      level: "초급~중급 추천",
+      title: "새벽 3시, 편의점의 우유 할아버지",
+      image: "assets/stories/ep01.jpg",
+      summary: "매일 새벽 3시, 편의점에서 흰 우유를 사서 마시지 않고 벤치에 두고 가시는 할아버지. 린과 함께 단서를 찾아 사연을 추리해 보세요!",
+      characters: [
+        { name: "린 (Rin)", role: "편의점 아르바이트생 · 관찰력이 뛰어남" },
+        { name: "점장님 (Manager)", role: "10년 경력의 편의점 점장" },
+        { name: "의문의 할아버지", role: "매일 새벽 3시에 흰 우유 1개를 사는 손님" }
+      ],
+      clues: [
+        "매일 새벽 3시, 흰 우유 한 개를 구매",
+        "우유를 마시지 않고 편의점 앞 벤치 위에 둔다",
+        "길 건너편 어두운 골목에서 10분쯤 기다린다",
+        "새벽 3시 10분쯤, 배달 오토바이 소리가 들린다"
+      ],
+      quiz: {
+        question: "할아버지는 왜 매일 새벽 3시에 우유를 벤치에 두고 골목에서 기다리실까요?",
+        options: [
+          { text: "1. 새벽에 길고양이들이 배고플까 봐 밥을 주려고", correct: false, feedback: "고양이는 우유를 마시면 배탈이 나기 쉬워요! 점장님의 말을 다시 살펴보세요." },
+          { text: "2. 새벽에 고생하는 배달원(혹은 가족)에게 따뜻한 응원을 전하려고", correct: true, feedback: "정답입니다! 💡 새벽 3시 10분에 들리는 배달 오토바이 소리와 골목에서 몰래 지켜보시는 모습이 가장 결정적인 단서예요." },
+          { text: "3. 벤치에 깜빡 잊고 우유를 두고 온 것을 몰라서", correct: false, feedback: "매일 비가 오나 바람이 부나 똑같이 행동하셨으니 깜빡한 건 아니에요." }
+        ],
+        hint: "린의 수첩에 적힌 마지막 단서(새벽 3시 10분 오토바이 소리)와 점장님의 말에 귀를 기울여 보세요!"
+      },
+      grammarPoints: [
+        { pattern: "-은/ㄴ 지 [시간]이 되다", meaning: "어떤 동작이 시작된 후 지난 시간을 나타낼 때", example: "린이 편의점에서 일한 지 한 달이 되었다." },
+        { pattern: "-나 보다 / -(으)ㄴ가 보다", meaning: "상황을 보고 부드럽게 추측할 때", example: "누군가를 몰래 보고 싶으신가 봐." },
+        { pattern: "-다던데", meaning: "남에게 들은 사실을 전달하며 말할 때", example: "고양이는 우유를 먹으면 배가 아프다던데." }
+      ],
+      keyVocab: [
+        { word: "관찰하다", meaning: "to observe", desc: "사물이나 사람을 주의 깊게 자세히 살펴보다" },
+        { word: "마찬가지", meaning: "the same / likewise", desc: "사물의 모양이나 일의 형편이 서로 같음" },
+        { word: "단서", meaning: "clue / lead", desc: "어떤 문제를 해결할 수 있는 첫 번째 실마리" },
+        { word: "추측하다", meaning: "to guess / deduce", desc: "어떤 사실을 바탕으로 미루어 생각하다" },
+        { word: "사연", meaning: "story / circumstances", desc: "어떤 일에 얽힌 자세한 이야기나 사정" }
+      ]
+    }
+  ]
 };
