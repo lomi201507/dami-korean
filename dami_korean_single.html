@@ -1171,6 +1171,251 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   13.5. HANDWRITTEN ROLLING PAPERS GALLERY & LIGHTBOX
+   -------------------------------------------------------------------------- */
+.rolling-paper-wrapper {
+  margin-bottom: 60px;
+}
+
+.rolling-paper-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rp-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);
+  border: 1.5px solid #FDA4AF;
+  color: #E11D48;
+  font-size: 0.92rem;
+  font-weight: 800;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+}
+
+.rp-guide {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.rolling-paper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.rolling-paper-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.rolling-paper-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: #FB7185;
+}
+
+.rp-thumb-box {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #F1F5F9;
+}
+
+.rp-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+.rolling-paper-card:hover .rp-thumb-img {
+  transform: scale(1.05);
+}
+
+.rp-zoom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rolling-paper-card:hover .rp-zoom-overlay {
+  opacity: 1;
+}
+
+.rp-zoom-icon {
+  font-size: 2rem;
+}
+
+.rp-zoom-text {
+  color: #FFFFFF;
+  font-size: 0.92rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.rp-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.rp-badge-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rp-num-badge {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #E11D48;
+  background: #FFF1F2;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.rp-tag-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sage-hover);
+  background: var(--sage-light);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.rp-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--deep-navy);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.rp-card-highlight {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #BE123C;
+  line-height: 1.55;
+  background: #FFF1F2;
+  border-left: 3px solid #F43F5E;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+
+.rp-card-summary {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.rp-card-action {
+  text-align: right;
+}
+
+.rp-read-link {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--coral-main);
+  transition: transform 0.2s ease;
+}
+
+.rolling-paper-card:hover .rp-read-link {
+  transform: translateX(4px);
+  display: inline-block;
+}
+
+/* Rolling Paper Lightbox Modal */
+.paper-modal-header {
+  margin-bottom: 24px;
+}
+
+.paper-modal-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--deep-navy);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.paper-modal-highlight {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #BE123C;
+  background: #FFF1F2;
+  border-left: 4px solid #F43F5E;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+}
+
+.paper-modal-summary {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.paper-modal-viewer {
+  background: #0F172A;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 24px;
+  text-align: center;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.paper-modal-full-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.reviews-sub-header {
+  margin-bottom: 24px;
+}
+
+.reviews-sub-badge {
+  display: inline-block;
+  background: var(--sage-light);
+  color: var(--sage-hover);
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+}
+
+/* --------------------------------------------------------------------------
    14. AI × KOREAN EDUCATION SECTION
    -------------------------------------------------------------------------- */
 .ai-section {
@@ -2453,18 +2698,34 @@ button {
     </section>
 
     <!-- =========================================================================
-         9. STUDENT REVIEWS (PRD [17. STUDENT REVIEWS])
+         9. STUDENT REVIEWS & ROLLING PAPERS (실제 학생 손글씨 롤링페이퍼 & 후기)
          ========================================================================= -->
     <section class="reviews-section" id="reviews">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag">Student Feedback</span>
-          <h2 class="section-title">학생들은 이렇게 말해요.</h2>
+          <span class="section-tag">Real Handwritten Letters & Reviews</span>
+          <h2 class="section-title">학생들의 목소리 & 손글씨 롤링페이퍼</h2>
           <p class="section-desc">
-            어학당 외국인 학생들이 수업 후 전해준 진솔하고 따뜻한 후기입니다.
+            어학당 학기를 마치며 외국인 학생들이 손글씨로 꾹꾹 눌러쓴 7장의 감동적인 롤링페이퍼와 수강 후기입니다.<br>
+            카드를 클릭하시면 학생들이 직접 전해준 소중한 손편지 원본을 크게 감상하실 수 있습니다.
           </p>
         </div>
 
+        <!-- 1. 실제 손글씨 롤링페이퍼 갤러리 -->
+        <div class="rolling-paper-wrapper">
+          <div class="rolling-paper-header">
+            <span class="rp-badge">💌 학생들의 실제 손편지 원본 (7종 전권 수록)</span>
+            <p class="rp-guide">※ 편지를 클릭하시면 원본 사진을 선명하게 확대하여 읽어보실 수 있습니다.</p>
+          </div>
+          <div class="rolling-paper-grid" id="rollingPaperGrid">
+            <!-- Rendered dynamically by main.js from DAMI_DATA.rollingPapers -->
+          </div>
+        </div>
+
+        <!-- 2. 학생 인터뷰 & 별점 후기 -->
+        <div class="reviews-sub-header">
+          <span class="reviews-sub-badge">⭐ 수강생들의 한 줄 후기</span>
+        </div>
         <div class="reviews-grid" id="reviewsGrid">
           <!-- Rendered dynamically by main.js from DAMI_DATA.reviews -->
         </div>
@@ -2652,6 +2913,20 @@ button {
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
       <div class="modal-body" id="storybookModalBody">
+        <!-- Injected dynamically by main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       16. LIGHTBOX MODAL FOR ROLLING PAPERS
+       ========================================================================= -->
+  <div class="modal-overlay" id="paperModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container modal-container-lg">
+      <button class="modal-close" id="paperCloseBtn" aria-label="닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="modal-body" id="paperModalBody">
         <!-- Injected dynamically by main.js -->
       </div>
     </div>
@@ -3083,6 +3358,80 @@ const DAMI_DATA = {
     }
   ],
 
+  // 7.5. 학생들이 직접 손글씨로 전한 실제 롤링페이퍼 7종 (Real Handwritten Letters)
+  rollingPapers: [
+    {
+      id: "paper01",
+      number: "Rolling Paper #01",
+      tag: "열정 & 배려",
+      title: "더 높은 반에서도 선생님과 함께 배우고 싶어요",
+      image: "assets/rolling-papers/paper01.jpg",
+      highlight: "\"선생님은 정말 아름다우시고 수업도 이해하기 쉽게 잘 가르쳐 주셔서 항상 열정적이세요.\"",
+      summary: "팜권단, 란비, 탕, 티 떵안, 튀화 등 어학당 학생들이 정성껏 전한 사랑과 감사의 편지",
+      color: "green"
+    },
+    {
+      id: "paper02",
+      number: "Rolling Paper #02",
+      tag: "사랑 & 축복",
+      title: "김형경 (다미) 선생님, 언제나 매일 행복하세요!",
+      image: "assets/rolling-papers/paper02.jpg",
+      highlight: "\"선생님 덕분에 이번 학기 공부할 수 있어서 정말 좋았어요. 친절하게 가르쳐 주셔서 감사합니다!\"",
+      summary: "알록달록 예쁜 스티커와 손글씨로 3급 반 학생들이 전한 다정한 응원의 롤링페이퍼",
+      color: "purple"
+    },
+    {
+      id: "paper03",
+      number: "Rolling Paper #03",
+      tag: "성장 & 감동",
+      title: "한국어가 어렵지 않게 된 건 선생님 덕분입니다",
+      image: "assets/rolling-papers/paper03.jpg",
+      highlight: "\"선생님 그동안 가르쳐 주셔서 정말 감사합니다. 한국어가 어렵지 않고 좋은 추억도 많이 만들었습니다.\"",
+      summary: "응웬 포엉린, 린, 또엉, 포엉안 등 학생들이 베트남어 감사 인사와 함께 전한 진심",
+      color: "white"
+    },
+    {
+      id: "paper04",
+      number: "Rolling Paper #04",
+      tag: "다정 & 친절",
+      title: "김 선생님! 친절하고 예쁜 우리 선생님",
+      image: "assets/rolling-papers/paper04.jpg",
+      highlight: "\"김 선생님! 정말 친절하고 마음에 딱 맞네요. 선생님 반에서 정말 즐거웠고 사랑해요♡\"",
+      summary: "분홍빛 편지지에 하트와 함께 담아낸 다미 선생님을 향한 학생들의 따뜻한 애정",
+      color: "pink"
+    },
+    {
+      id: "paper05",
+      number: "Rolling Paper #05",
+      tag: "최고의 수업",
+      title: "우리 반을 가장 잘 가르쳐 주신 최고의 선생님",
+      image: "assets/rolling-papers/paper05.jpg",
+      highlight: "\"선생님께 많이 배웠으며 정말 감사합니다. 정말 잘 가르치시고 친절하고 좋은 선생님이세요.\"",
+      summary: "노란 편지지에 꾹꾹 눌러쓴 '선생님과 꼭 다시 만나고 싶다'는 학생들의 간절한 메시지",
+      color: "yellow"
+    },
+    {
+      id: "paper06",
+      number: "Rolling Paper #06",
+      tag: "책임감 & 신뢰",
+      title: "수업은 언제나 열정과 책임감이 넘쳤습니다",
+      image: "assets/rolling-papers/paper06.jpg",
+      highlight: "\"수업은 항상 열정적이고 우리의 행복에도 책임감이 있었습니다. 선생님 덕분에 2급 잘 마쳤습니다.\"",
+      summary: "어학당 수강생들이 입을 모아 증언하는 김다미 선생님의 열정적인 교육 철학과 수업 만족도",
+      color: "blue"
+    },
+    {
+      id: "paper07",
+      number: "Rolling Paper #07",
+      tag: "흥미 & 행복",
+      title: "선생님의 수업이 너무 흥미로웠습니다!",
+      image: "assets/rolling-papers/paper07.jpg",
+      highlight: "\"선생님 덕분에 이번 학기 공부하며 너무 즐거운 시간을 보냈습니다. 선생님 수업 최고예요!\"",
+      summary: "티엔, 튀눙, 샨인 등 학생들이 보낸 '다음 학기에도 또 선생님께 배우고 싶다'는 감사의 쪽지들",
+      color: "mint"
+    }
+  ],
+
   // 8. AI × Korean Education (PRD [18. AI × KOREAN EDUCATION])
   aiEducation: {
     badge: "Future & Innovation",
@@ -3274,6 +3623,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChunks();
   renderDiscourse();
   renderReviews();
+  renderRollingPapers();
   renderAIEducation();
   renderStorybooks();
   renderBooks();
@@ -3610,6 +3960,85 @@ function renderReviews() {
 }
 
 /* ==========================================================================
+   9.5. 학생들의 손글씨 롤링페이퍼 (Rolling Papers) 갤러리 & 모달 확대
+   ========================================================================== */
+function renderRollingPapers() {
+  const container = document.getElementById('rollingPaperGrid');
+  if (!container || !DAMI_DATA.rollingPapers) return;
+
+  container.innerHTML = DAMI_DATA.rollingPapers.map((paper, idx) => `
+    <div class="rolling-paper-card paper-color-${paper.color}" data-paper-idx="${idx}">
+      <div class="rp-thumb-box">
+        <img src="${paper.image}" alt="${paper.title}" class="rp-thumb-img">
+        <div class="rp-zoom-overlay">
+          <span class="rp-zoom-icon">🔍</span>
+          <span class="rp-zoom-text">손편지 크게 보기</span>
+        </div>
+      </div>
+      <div class="rp-content">
+        <div class="rp-badge-row">
+          <span class="rp-num-badge">${paper.number}</span>
+          <span class="rp-tag-badge">${paper.tag}</span>
+        </div>
+        <h3 class="rp-card-title">${paper.title}</h3>
+        <p class="rp-card-highlight">${paper.highlight}</p>
+        <p class="rp-card-summary">${paper.summary}</p>
+        <div class="rp-card-action">
+          <span class="rp-read-link">원본 편지 읽기 &rarr;</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('.rolling-paper-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = card.getAttribute('data-paper-idx');
+      openPaperModal(DAMI_DATA.rollingPapers[idx]);
+    });
+  });
+}
+
+function openPaperModal(paper) {
+  const modal = document.getElementById('paperModal');
+  const modalBody = document.getElementById('paperModalBody');
+  if (!modal || !modalBody || !paper) return;
+
+  modalBody.innerHTML = `
+    <div class="paper-modal-header">
+      <div class="rp-badge-row">
+        <span class="rp-num-badge">${paper.number}</span>
+        <span class="rp-tag-badge">${paper.tag}</span>
+      </div>
+      <h2 class="paper-modal-title">${paper.title}</h2>
+      <p class="paper-modal-highlight">${paper.highlight}</p>
+      <p class="paper-modal-summary">${paper.summary}</p>
+    </div>
+
+    <div class="paper-modal-viewer">
+      <img src="${paper.image}" alt="${paper.title}" class="paper-modal-full-img">
+    </div>
+
+    <div class="modal-footer-action">
+      <button class="btn btn-primary" onclick="closePaperModal()">
+        확인하고 닫기
+      </button>
+    </div>
+  `;
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePaperModal() {
+  const modal = document.getElementById('paperModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+/* ==========================================================================
    10. AI × Korean Education 10개 영역
    ========================================================================== */
 function renderAIEducation() {
@@ -3826,9 +4255,12 @@ function initModal() {
   const closeBtn = document.getElementById('modalCloseBtn');
   const sbModal = document.getElementById('storybookModal');
   const sbCloseBtn = document.getElementById('storybookCloseBtn');
+  const paperModal = document.getElementById('paperModal');
+  const paperCloseBtn = document.getElementById('paperCloseBtn');
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (sbCloseBtn) sbCloseBtn.addEventListener('click', closeStorybookModal);
+  if (paperCloseBtn) paperCloseBtn.addEventListener('click', closePaperModal);
 
   // 모달 배경 클릭 시 닫기
   if (modal) {
@@ -3841,12 +4273,18 @@ function initModal() {
       if (e.target === sbModal) closeStorybookModal();
     });
   }
+  if (paperModal) {
+    paperModal.addEventListener('click', (e) => {
+      if (e.target === paperModal) closePaperModal();
+    });
+  }
 
   // ESC 키로 닫기
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (modal && modal.classList.contains('open')) closeModal();
       if (sbModal && sbModal.classList.contains('open')) closeStorybookModal();
+      if (paperModal && paperModal.classList.contains('open')) closePaperModal();
     }
   });
 }

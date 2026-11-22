@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChunks();
   renderDiscourse();
   renderReviews();
+  renderRollingPapers();
   renderAIEducation();
   renderStorybooks();
   renderBooks();
@@ -350,6 +351,85 @@ function renderReviews() {
 }
 
 /* ==========================================================================
+   9.5. 학생들의 손글씨 롤링페이퍼 (Rolling Papers) 갤러리 & 모달 확대
+   ========================================================================== */
+function renderRollingPapers() {
+  const container = document.getElementById('rollingPaperGrid');
+  if (!container || !DAMI_DATA.rollingPapers) return;
+
+  container.innerHTML = DAMI_DATA.rollingPapers.map((paper, idx) => `
+    <div class="rolling-paper-card paper-color-${paper.color}" data-paper-idx="${idx}">
+      <div class="rp-thumb-box">
+        <img src="${paper.image}" alt="${paper.title}" class="rp-thumb-img">
+        <div class="rp-zoom-overlay">
+          <span class="rp-zoom-icon">🔍</span>
+          <span class="rp-zoom-text">손편지 크게 보기</span>
+        </div>
+      </div>
+      <div class="rp-content">
+        <div class="rp-badge-row">
+          <span class="rp-num-badge">${paper.number}</span>
+          <span class="rp-tag-badge">${paper.tag}</span>
+        </div>
+        <h3 class="rp-card-title">${paper.title}</h3>
+        <p class="rp-card-highlight">${paper.highlight}</p>
+        <p class="rp-card-summary">${paper.summary}</p>
+        <div class="rp-card-action">
+          <span class="rp-read-link">원본 편지 읽기 &rarr;</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('.rolling-paper-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = card.getAttribute('data-paper-idx');
+      openPaperModal(DAMI_DATA.rollingPapers[idx]);
+    });
+  });
+}
+
+function openPaperModal(paper) {
+  const modal = document.getElementById('paperModal');
+  const modalBody = document.getElementById('paperModalBody');
+  if (!modal || !modalBody || !paper) return;
+
+  modalBody.innerHTML = `
+    <div class="paper-modal-header">
+      <div class="rp-badge-row">
+        <span class="rp-num-badge">${paper.number}</span>
+        <span class="rp-tag-badge">${paper.tag}</span>
+      </div>
+      <h2 class="paper-modal-title">${paper.title}</h2>
+      <p class="paper-modal-highlight">${paper.highlight}</p>
+      <p class="paper-modal-summary">${paper.summary}</p>
+    </div>
+
+    <div class="paper-modal-viewer">
+      <img src="${paper.image}" alt="${paper.title}" class="paper-modal-full-img">
+    </div>
+
+    <div class="modal-footer-action">
+      <button class="btn btn-primary" onclick="closePaperModal()">
+        확인하고 닫기
+      </button>
+    </div>
+  `;
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePaperModal() {
+  const modal = document.getElementById('paperModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+/* ==========================================================================
    10. AI × Korean Education 10개 영역
    ========================================================================== */
 function renderAIEducation() {
@@ -566,9 +646,12 @@ function initModal() {
   const closeBtn = document.getElementById('modalCloseBtn');
   const sbModal = document.getElementById('storybookModal');
   const sbCloseBtn = document.getElementById('storybookCloseBtn');
+  const paperModal = document.getElementById('paperModal');
+  const paperCloseBtn = document.getElementById('paperCloseBtn');
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (sbCloseBtn) sbCloseBtn.addEventListener('click', closeStorybookModal);
+  if (paperCloseBtn) paperCloseBtn.addEventListener('click', closePaperModal);
 
   // 모달 배경 클릭 시 닫기
   if (modal) {
@@ -581,12 +664,18 @@ function initModal() {
       if (e.target === sbModal) closeStorybookModal();
     });
   }
+  if (paperModal) {
+    paperModal.addEventListener('click', (e) => {
+      if (e.target === paperModal) closePaperModal();
+    });
+  }
 
   // ESC 키로 닫기
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (modal && modal.classList.contains('open')) closeModal();
       if (sbModal && sbModal.classList.contains('open')) closeStorybookModal();
+      if (paperModal && paperModal.classList.contains('open')) closePaperModal();
     }
   });
 }
