@@ -403,7 +403,7 @@ const DAMI_DATA = {
       stars: 5,
       quote: "선생님이 항상 열정적으로 가르쳐 주세요.",
       content: "질문 하나를 해도 더 쉽고 깊이 있게 설명해 주시려는 열정이 느껴집니다. 학생 한 명 한 명 발음까지 꼼꼼히 챙겨주셔서 큰 힘이 돼요.",
-      student: "Elena K. (러시아 학습자)",
+      student: "Elena K. (몽골 학습자)",
       course: "한국어 어학당 초급반"
     },
     {
@@ -417,7 +417,7 @@ const DAMI_DATA = {
       stars: 5,
       quote: "수업 시간이 빨리 지나가요.",
       content: "어려운 한국어가 이렇게 재미있을 수 있다는 걸 처음 알았어요. 한국인 친구들과 대화할 때 배운 덩어리 표현을 바로 써먹고 있습니다.",
-      student: "Chen W. (중국 대학원생)",
+      student: "Chen W. (중국 대학생)",
       course: "어학당 TOPIK 대비반"
     }
   ],
