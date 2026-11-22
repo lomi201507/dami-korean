@@ -477,6 +477,13 @@ const DAMI_DATA = {
         color: "coral"
       },
       {
+        title: "Korean Idioms",
+        subtitle: "상황으로 배우는 한국어 관용표현",
+        desc: "단어 뜻만으로는 알 수 없는 한국인의 진짜 속마음과 실전 관용표현을 상황별로 재미있게 정복하기",
+        status: "Coming Soon",
+        color: "pink"
+      },
+      {
         title: "Real Korean Listening",
         subtitle: "귀가 열리는 실전 듣기",
         desc: "교과서 녹음이 아닌 한국인의 실제 말소리와 억양에 적응하는 실전 리스닝",
