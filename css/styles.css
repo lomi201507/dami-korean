@@ -397,6 +397,57 @@ button {
   transform: scale(1.03);
 }
 
+/* 우측 상단 황금별 강의 경력 뱃지 */
+.hero-experience-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #FBBF24;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.28);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-experience-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.35);
+}
+
+.exp-badge-star {
+  font-size: 1.25rem;
+  color: #F59E0B;
+  display: flex;
+  align-items: center;
+  filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.45));
+}
+
+.exp-badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.exp-badge-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #92400E;
+  letter-spacing: 0.5px;
+}
+
+.exp-badge-hours {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #B45309;
+}
+
 .hero-photo-tag {
   position: absolute;
   bottom: 16px;

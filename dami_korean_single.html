@@ -427,6 +427,57 @@ button {
   transform: scale(1.03);
 }
 
+/* 우측 상단 황금별 강의 경력 뱃지 */
+.hero-experience-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #FBBF24;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.28);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-experience-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.35);
+}
+
+.exp-badge-star {
+  font-size: 1.25rem;
+  color: #F59E0B;
+  display: flex;
+  align-items: center;
+  filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.45));
+}
+
+.exp-badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.exp-badge-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #92400E;
+  letter-spacing: 0.5px;
+}
+
+.exp-badge-hours {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #B45309;
+}
+
 .hero-photo-tag {
   position: absolute;
   bottom: 16px;
@@ -2206,6 +2257,15 @@ button {
 
         <div class="hero-visual">
           <div class="hero-image-wrapper">
+            <!-- 우측 상단 황금별 강의 경력 뱃지 -->
+            <div class="hero-experience-badge">
+              <span class="exp-badge-star">⭐</span>
+              <div class="exp-badge-text">
+                <span class="exp-badge-label">강의 경력</span>
+                <strong class="exp-badge-hours">2,500시간+</strong>
+              </div>
+            </div>
+
             <img src="assets/teacher_dami.jpg" alt="김다미 한국어 선생님 프로필 사진" class="hero-photo" onerror="this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80'">
             <div class="hero-photo-tag">
               <span class="photo-tag-role">Korean educator Dami</span>
