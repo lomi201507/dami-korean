@@ -600,29 +600,73 @@ function closeModal() {
 }
 
 /* ==========================================================================
-   13. 문의 폼 (Contact Form) 정적 피드백
+   14. 문의 폼 (Contact Form) - lomisvoice@naver.com 자동 연동
    ========================================================================== */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   const feedback = document.getElementById('formFeedback');
+  const submitBtn = document.getElementById('contactSubmitBtn');
 
   if (!form || !feedback) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const name = document.getElementById('userName').value.trim();
+    const email = document.getElementById('userEmail').value.trim();
+    const level = document.getElementById('userLevel').value;
+    const message = document.getElementById('userMessage').value.trim();
 
-    feedback.className = 'form-feedback success';
-    feedback.innerHTML = `
-      <strong>감사합니다, ${name}님!</strong><br>
-      소중한 문의 메시지가 잘 접수되었습니다. 김다미 선생님께서 확인 후 기재해주신 이메일로 빠르게 답변드리겠습니다.
-    `;
-    form.reset();
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>메일 전송 중...</span>`;
+    }
 
-    setTimeout(() => {
-      feedback.className = 'form-feedback';
-      feedback.innerHTML = '';
-    }, 6000);
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/lomisvoice@naver.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          "보낸 사람 (Name)": name,
+          "답변받을 이메일 (Email)": email,
+          "한국어 수준 (Level)": level,
+          "문의 내용 (Message)": message,
+          "_subject": `[DAMI KOREAN] ${name}님의 새로운 홈페이지 문의가 도착했습니다!`,
+          "_template": "table"
+        })
+      });
+
+      if (response.ok) {
+        feedback.className = 'form-feedback success';
+        feedback.innerHTML = `
+          <strong>💌 문의가 성공적으로 전송되었습니다!</strong><br>
+          ${name}님의 메시지가 김다미 선생님(<strong>lomisvoice@naver.com</strong>)께 안전하게 전달되었습니다.<br>
+          확인 후 남겨주신 이메일(${email})로 정성껏 답변드리겠습니다.
+        `;
+        form.reset();
+      } else {
+        throw new Error('전송 실패');
+      }
+    } catch (err) {
+      // 혹시라도 네트워크 오류 시 직접 메일 열기 안내
+      feedback.className = 'form-feedback success';
+      feedback.innerHTML = `
+        <strong>접수 안내</strong><br>
+        혹시 메일 클라이언트를 바로 열어 직접 보내시려면 아래 링크를 눌러주세요.<br>
+        👉 <a href="mailto:lomisvoice@naver.com?subject=[DAMI KOREAN 문의] ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}" style="color: var(--coral-main); font-weight: bold; text-decoration: underline;">lomisvoice@naver.com으로 메일 바로 보내기</a>
+      `;
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `
+          <span>문의 메시지 보내기</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        `;
+      }
+    }
   });
 }
 

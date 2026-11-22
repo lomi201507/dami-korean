@@ -369,7 +369,12 @@
             </p>
           </div>
 
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/lomisvoice@naver.com" method="POST">
+            <!-- FormSubmit Email Config -->
+            <input type="hidden" name="_subject" value="[DAMI KOREAN] 홈페이지에서 새로운 문의가 도착했습니다!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
             <div class="form-row">
               <div class="form-group">
                 <label for="userName">이름 / Name</label>
@@ -383,21 +388,25 @@
             <div class="form-group">
               <label for="userLevel">한국어 수준 / Korean Level</label>
               <select id="userLevel" name="level">
-                <option value="beginner">초급 (Beginner - 한글 학습 및 기초 회화)</option>
-                <option value="intermediate">중급 (Intermediate - 어학당 3~4급 및 일상 대화)</option>
-                <option value="advanced">고급 (Advanced - TOPIK 5~6급 및 대학 과제)</option>
-                <option value="teacher">한국어 교사 및 교육 관계자 (Educator)</option>
+                <option value="초급 (Beginner)">초급 (Beginner - 한글 학습 및 기초 회화)</option>
+                <option value="중급 (Intermediate)">중급 (Intermediate - 어학당 3~4급 및 일상 대화)</option>
+                <option value="고급 (Advanced)">고급 (Advanced - TOPIK 5~6급 및 대학 과제)</option>
+                <option value="한국어 교사 및 교육 관계자 (Educator)">한국어 교사 및 교육 관계자 (Educator)</option>
               </select>
             </div>
             <div class="form-group">
               <label for="userMessage">메시지 / Message</label>
               <textarea id="userMessage" name="message" rows="4" placeholder="어떤 한국어를 배우고 싶으신가요? 편하게 남겨주세요." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">
+            <button type="submit" class="btn btn-primary btn-block" id="contactSubmitBtn">
               <span>문의 메시지 보내기</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             </button>
             <div class="form-feedback" id="formFeedback"></div>
+            
+            <p class="contact-direct-email text-center" style="margin-top: 18px; font-size: 0.88rem; color: var(--text-muted);">
+              직접 이메일 문의: <a href="mailto:lomisvoice@naver.com" style="color: var(--coral-main); font-weight: 700; text-decoration: underline;">lomisvoice@naver.com</a>
+            </p>
           </form>
         </div>
       </div>
