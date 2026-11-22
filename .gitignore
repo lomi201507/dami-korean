@@ -13,3 +13,6 @@ desktop.ini
 *.tmp
 *.log
 
+
+# Private documents
+*.docx
