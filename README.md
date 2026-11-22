@@ -58,5 +58,5 @@
 
 ## 📄 저작권
 
-© 2026 DAMI KOREAN (Teacher Dami). All rights reserved.
+© 2026 DAMI KOREAN (Korean educator Dami). All rights reserved.
 
