@@ -26,8 +26,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <!-- Stylesheet (Cache Busting v2.0) -->
-  <link rel="stylesheet" href="css/styles.css?v=2.0">
+  <!-- Stylesheet (Cache Busting v2.2) -->
+  <link rel="stylesheet" href="css/styles.css?v=2.2">
 </head>
 <body>
 
@@ -187,6 +187,26 @@
             성신여대·명지대 등 대학교 부설 어학당에서 2,500시간 이상 외국인 학생들을 지도해 왔습니다.<br>
             고려대 교육대학원 한국어교육 석사 과정과 글로벌 비즈니스 20년의 경험으로 쉽고 재미있는 실전 한국어를 선물합니다.
           </p>
+        </div>
+
+        <!-- 김다미 선생님 시그니처 와이드 인트로 비디오 -->
+        <div class="about-video-wrapper">
+          <div class="about-video-container">
+            <video class="about-video-player" id="damiIntroVideo" autoplay muted loop playsinline preload="auto">
+              <source src="assets/videos/dami_intro_final_v2.mp4" type="video/mp4">
+              현재 브라우저는 비디오 재생을 지원하지 않습니다.
+            </video>
+            <div class="about-video-controls">
+              <button class="video-sound-btn" id="videoSoundBtn" aria-label="음소거 해제/설정" title="소리 켜기/끄기">
+                <span class="sound-icon">🔇</span>
+              </button>
+            </div>
+            <div class="about-video-overlay-badge">
+              <span class="video-badge-dot"></span>
+              <span>DAMI KOREAN · Signature Intro</span>
+            </div>
+          </div>
+          <p class="about-video-caption">✨ "어려운 한국어는 쉽게, 배운 한국어는 실제로 사용할 수 있게" — Korean Educator Dami</p>
         </div>
 
         <div class="about-grid" id="aboutGrid">
@@ -508,7 +528,7 @@
   </div>
 
   <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.1) -->
-  <script src="js/data.js?v=2.1"></script>
-  <script src="js/main.js?v=2.1"></script>
+  <script src="js/data.js?v=2.2"></script>
+  <script src="js/main.js?v=2.2"></script>
 </body>
 </html>

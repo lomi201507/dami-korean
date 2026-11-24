@@ -7,6 +7,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initMobileMenu();
+  initAboutVideo();
   renderProfileCards();
   renderPhilosophy();
   initTodaysKorean();
@@ -779,3 +780,22 @@ function speakKorean(text) {
 
   window.speechSynthesis.speak(utterance);
 }
+
+/* ==========================================================================
+   15. 김다미 선생님 시그니처 인트로 비디오 사운드 토글
+   ========================================================================== */
+function initAboutVideo() {
+  const video = document.getElementById('damiIntroVideo');
+  const soundBtn = document.getElementById('videoSoundBtn');
+  if (!video || !soundBtn) return;
+
+  soundBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    const soundIcon = soundBtn.querySelector('.sound-icon');
+    if (soundIcon) {
+      soundIcon.textContent = video.muted ? '🔇' : '🔊';
+    }
+    soundBtn.setAttribute('title', video.muted ? '소리 켜기' : '소리 끄기');
+  });
+}
+

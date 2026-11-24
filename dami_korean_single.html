@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <!-- Stylesheet (Cache Busting v2.0) -->
+  <!-- Stylesheet (Cache Busting v2.2) -->
   <style>
 /* ==========================================================================
    DAMI KOREAN - Official Brand Stylesheet
@@ -680,6 +680,102 @@ button {
 .about-section {
   padding: 80px 0;
   background-color: var(--bg-secondary);
+}
+
+/* 김다미 선생님 시그니처 와이드 인트로 비디오 */
+.about-video-wrapper {
+  max-width: 960px;
+  margin: 0 auto 48px;
+}
+
+.about-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 16px 36px -6px rgba(30, 41, 59, 0.16);
+  border: 2px solid rgba(232, 122, 93, 0.28);
+  background: #000;
+}
+
+.about-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-video-controls {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 5;
+}
+
+.video-sound-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.video-sound-btn:hover {
+  background: var(--coral-main);
+  transform: scale(1.08);
+}
+
+.about-video-overlay-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+  letter-spacing: 0.02em;
+}
+
+.about-video-overlay-badge .video-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #22C55E;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22C55E;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.about-video-caption {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 14px;
 }
 
 .about-grid {
@@ -2452,7 +2548,7 @@ button {
   }
 }
 
-</style>
+  </style>
 </head>
 <body>
 
@@ -2612,6 +2708,26 @@ button {
             성신여대·명지대 등 대학교 부설 어학당에서 2,500시간 이상 외국인 학생들을 지도해 왔습니다.<br>
             고려대 교육대학원 한국어교육 석사 과정과 글로벌 비즈니스 20년의 경험으로 쉽고 재미있는 실전 한국어를 선물합니다.
           </p>
+        </div>
+
+        <!-- 김다미 선생님 시그니처 와이드 인트로 비디오 -->
+        <div class="about-video-wrapper">
+          <div class="about-video-container">
+            <video class="about-video-player" id="damiIntroVideo" autoplay muted loop playsinline preload="auto">
+              <source src="assets/videos/dami_intro_final_v2.mp4" type="video/mp4">
+              현재 브라우저는 비디오 재생을 지원하지 않습니다.
+            </video>
+            <div class="about-video-controls">
+              <button class="video-sound-btn" id="videoSoundBtn" aria-label="음소거 해제/설정" title="소리 켜기/끄기">
+                <span class="sound-icon">🔇</span>
+              </button>
+            </div>
+            <div class="about-video-overlay-badge">
+              <span class="video-badge-dot"></span>
+              <span>DAMI KOREAN · Signature Intro</span>
+            </div>
+          </div>
+          <p class="about-video-caption">✨ "어려운 한국어는 쉽게, 배운 한국어는 실제로 사용할 수 있게" — Korean Educator Dami</p>
         </div>
 
         <div class="about-grid" id="aboutGrid">
@@ -2932,7 +3048,7 @@ button {
     </div>
   </div>
 
-  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.1) -->
+  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.2) -->
   <script>
 /**
  * DAMI KOREAN - Official Learning Data Module
@@ -2946,7 +3062,8 @@ const DAMI_DATA = {
     name: "DAMI KOREAN",
     title: "김다미 한국어 선생님",
     tagline: "가장 쉬운 한국어, 가장 가까운 한국어",
-    heroMain: "가장 쉬운 한국어,\n김다미 선생님과 함께",
+    heroMain: "가장 쉬운 한국어,
+김다미 선생님과 함께",
     heroSub: "어려운 한국어는 쉽게, 배운 한국어는 실제로 사용할 수 있게.",
     heroBadge: "Korean Educator Dami · 어학당 2,500시간+ · AI × Korean Education",
     aboutTitle: "안녕하세요, 한국어 선생님 김다미입니다.",
@@ -3021,55 +3138,64 @@ const DAMI_DATA = {
       expression: "그럴 수도 있죠.",
       pronunciation: "geu-reol su-do it-jyo",
       meaning: "That could happen / It's possible (상대방을 위로하거나 상황을 너그럽게 넘길 때)",
-      example: "A: 오늘 버스를 놓쳐서 지각했어요.\nB: 괜찮아요, 그럴 수도 있죠! 다음엔 조심하세요."
+      example: "A: 오늘 버스를 놓쳐서 지각했어요.
+B: 괜찮아요, 그럴 수도 있죠! 다음엔 조심하세요."
     },
     {
       expression: "생각보다 괜찮아요.",
       pronunciation: "saeng-gak-bo-da gwaen-chan-a-yo",
       meaning: "It's better than I thought (걱정했던 것보다 결과가 좋을 때)",
-      example: "A: 한국어 시험 많이 어려웠어요?\nB: 아니요, 생각보다 괜찮았어요!"
+      example: "A: 한국어 시험 많이 어려웠어요?
+B: 아니요, 생각보다 괜찮았어요!"
     },
     {
       expression: "무슨 말인지 알겠어요.",
       pronunciation: "mu-seun ma-rin-ji al-get-eo-yo",
       meaning: "I understand what you mean (상대의 말을 충분히 이해하고 공감할 때)",
-      example: "A: 한국어 조사가 너무 헷갈려요.\nB: 네, 무슨 말인지 알겠어요. 처음에 다들 그래요."
+      example: "A: 한국어 조사가 너무 헷갈려요.
+B: 네, 무슨 말인지 알겠어요. 처음에 다들 그래요."
     },
     {
       expression: "그런 것 같아요.",
       pronunciation: "geu-reon geot gat-a-yo",
       meaning: "I think so / It seems like it (단정 짓지 않고 부드럽게 의견을 표현할 때)",
-      example: "A: 내일 비가 올까요?\nB: 네, 날씨 예보를 보니까 그런 것 같아요."
+      example: "A: 내일 비가 올까요?
+B: 네, 날씨 예보를 보니까 그런 것 같아요."
     },
     {
       expression: "제가 한번 해 볼게요.",
       pronunciation: "je-ga han-beon hae bol-ge-yo",
       meaning: "I will give it a try (자신감 있게 도전하고 참여할 때)",
-      example: "A: 이번 문제 읽어볼 사람 있을까요?\nB: 선생님, 제가 한번 해 볼게요!"
+      example: "A: 이번 문제 읽어볼 사람 있을까요?
+B: 선생님, 제가 한번 해 볼게요!"
     },
     {
       expression: "어떻게 해야 할지 모르겠어요.",
       pronunciation: "eo-tteok-ke hae-ya hal-ji mo-reu-get-eo-yo",
       meaning: "I don't know what to do (도움이 필요하거나 막막할 때)",
-      example: "A: 비자 연장 신청을 어떻게 해야 할지 모르겠어요.\nB: 제가 도와드릴게요. 서류 먼저 확인해 봐요."
+      example: "A: 비자 연장 신청을 어떻게 해야 할지 모르겠어요.
+B: 제가 도와드릴게요. 서류 먼저 확인해 봐요."
     },
     {
       expression: "그럴 줄 알았어요.",
       pronunciation: "geu-reol jul al-at-eo-yo",
       meaning: "I knew it! (예상했던 일이 일어났을 때)",
-      example: "A: 이번 TOPIK 시험에 합격했어요!\nB: 축하해요! 열심히 공부하더니 그럴 줄 알았어요."
+      example: "A: 이번 TOPIK 시험에 합격했어요!
+B: 축하해요! 열심히 공부하더니 그럴 줄 알았어요."
     },
     {
       expression: "그런 적이 있어요.",
       pronunciation: "geu-reon jeog-i it-eo-yo",
       meaning: "I have had that experience (과거의 경험을 공유할 때)",
-      example: "A: 한국 식당에서 주문할 때 긴장해 본 적 있어요?\nB: 네, 저도 처음에 그런 적이 있어요."
+      example: "A: 한국 식당에서 주문할 때 긴장해 본 적 있어요?
+B: 네, 저도 처음에 그런 적이 있어요."
     },
     {
       expression: "아무래도 그런 것 같아요.",
       pronunciation: "a-mu-rae-do geu-reon geot gat-a-yo",
       meaning: "It really seems so (여러 정황상 그럴 가능성이 높을 때)",
-      example: "A: 오늘 도서관에 사람이 정말 많네요.\nB: 시험 기간이라서 아무래도 그런 것 같아요."
+      example: "A: 오늘 도서관에 사람이 정말 많네요.
+B: 시험 기간이라서 아무래도 그런 것 같아요."
     }
   ],
 
@@ -3240,63 +3366,72 @@ const DAMI_DATA = {
       meaning: "That could happen / It's possible",
       category: "공감과 위로",
       desc: "실수나 예상치 못한 상황에서 상대방을 안심시켜 주는 다정한 표현",
-      dialogue: "A: 약속에 조금 늦을 것 같아요, 죄송해요.\nB: 괜찮아요! 살다 보면 그럴 수도 있죠."
+      dialogue: "A: 약속에 조금 늦을 것 같아요, 죄송해요.
+B: 괜찮아요! 살다 보면 그럴 수도 있죠."
     },
     {
       korean: "그런 것 같아요.",
       meaning: "I think so / It seems like it",
       category: "부드러운 의견",
       desc: "자기 의견을 너무 단정적으로 말하지 않고 조심스럽게 전달할 때",
-      dialogue: "A: 이 방법이 더 빠를까요?\nB: 네, 제가 보기에도 그런 것 같아요."
+      dialogue: "A: 이 방법이 더 빠를까요?
+B: 네, 제가 보기에도 그런 것 같아요."
     },
     {
       korean: "제가 한번 해 볼게요.",
       meaning: "I'll give it a try",
       category: "도전과 참여",
       desc: "어려운 과제나 활동에서 용기를 내어 주도적으로 나설 때 쓰는 멋진 표현",
-      dialogue: "A: 이 발표 먼저 해 볼 사람 있을까요?\nB: 선생님, 부족하지만 제가 한번 해 볼게요!"
+      dialogue: "A: 이 발표 먼저 해 볼 사람 있을까요?
+B: 선생님, 부족하지만 제가 한번 해 볼게요!"
     },
     {
       korean: "어떻게 해야 할지 모르겠어요.",
       meaning: "I don't know what to do",
       category: "도움 요청",
       desc: "낯선 한국 생활이나 어려운 문법 앞에서 도움을 청할 때 솔직한 표현",
-      dialogue: "A: 표정이 안 좋은데 무슨 일 있어요?\nB: 은행 계좌 개설을 어떻게 해야 할지 모르겠어요."
+      dialogue: "A: 표정이 안 좋은데 무슨 일 있어요?
+B: 은행 계좌 개설을 어떻게 해야 할지 모르겠어요."
     },
     {
       korean: "생각보다 괜찮아요.",
       meaning: "It's better than I expected",
       category: "긍정 평가",
       desc: "걱정했던 일이나 처음 시도한 일이 예상보다 좋을 때 기분 좋게 쓰는 표현",
-      dialogue: "A: 매운 떡볶이 처음 먹어보는데 괜찮아요?\nB: 네! 많이 매울 줄 알았는데 생각보다 괜찮아요."
+      dialogue: "A: 매운 떡볶이 처음 먹어보는데 괜찮아요?
+B: 네! 많이 매울 줄 알았는데 생각보다 괜찮아요."
     },
     {
       korean: "무슨 말인지 알겠어요.",
       meaning: "I get what you mean",
       category: "이해와 소통",
       desc: "상대방의 설명이나 고민을 듣고 깊이 공감하며 이해했음을 표현할 때",
-      dialogue: "A: 문법 규칙은 아는데 입에서 바로 안 나와요.\nB: 맞아요, 무슨 말인지 알겠어요. 반복 연습이 필요해요."
+      dialogue: "A: 문법 규칙은 아는데 입에서 바로 안 나와요.
+B: 맞아요, 무슨 말인지 알겠어요. 반복 연습이 필요해요."
     },
     {
       korean: "그럴 줄 알았어요.",
       meaning: "I knew it!",
       category: "예상과 확신",
       desc: "어떤 결과를 미리 확신하고 있었을 때 긍정적인 응원으로 쓰는 표현",
-      dialogue: "A: 선생님, 저 이번에 TOPIK 최고 점수 받았어요!\nB: 와, 대단해요! 평소에 워낙 열심히 하셔서 그럴 줄 알았어요."
+      dialogue: "A: 선생님, 저 이번에 TOPIK 최고 점수 받았어요!
+B: 와, 대단해요! 평소에 워낙 열심히 하셔서 그럴 줄 알았어요."
     },
     {
       korean: "그런 적이 있어요.",
       meaning: "I've had that experience before",
       category: "경험 공유",
       desc: "상대방의 고민을 들으며 나도 비슷한 경험이 있었다고 공감대를 형성할 때",
-      dialogue: "A: 발표할 때 너무 떨려서 머리가 하얘졌어요.\nB: 저도 예전에 사람들 앞에서 그런 적이 있어요. 누구나 그래요."
+      dialogue: "A: 발표할 때 너무 떨려서 머리가 하얘졌어요.
+B: 저도 예전에 사람들 앞에서 그런 적이 있어요. 누구나 그래요."
     },
     {
       korean: "아무래도 그런 것 같아요.",
       meaning: "It really seems so",
       category: "정황 추측",
       desc: "여러 상황을 종합해 볼 때 그럴 가능성이 매우 높다고 부드럽게 동의할 때",
-      dialogue: "A: 오늘 지하철에 왜 이렇게 사람이 많죠?\nB: 비가 와서 아무래도 그런 것 같아요."
+      dialogue: "A: 오늘 지하철에 왜 이렇게 사람이 많죠?
+B: 비가 와서 아무래도 그런 것 같아요."
     }
   ],
 
@@ -3307,20 +3442,26 @@ const DAMI_DATA = {
     topics: [
       {
         title: "약속 거절하기 (완곡한 표현)",
-        textbook: "A: 내일 만날 수 있어요?\nB: 아니요, 만날 수 없습니다. 시간이 없습니다.",
-        realKorean: "A: 내일 저녁에 시간 괜찮아요? 같이 밥 먹어요!\nB: 아, 내일요? 정말 가고 싶은데, 선약이 있어서 어쩌죠... 다음 주엔 어떠세요?",
+        textbook: "A: 내일 만날 수 있어요?
+B: 아니요, 만날 수 없습니다. 시간이 없습니다.",
+        realKorean: "A: 내일 저녁에 시간 괜찮아요? 같이 밥 먹어요!
+B: 아, 내일요? 정말 가고 싶은데, 선약이 있어서 어쩌죠... 다음 주엔 어떠세요?",
         point: "상대방의 제안에 감사하면서도 미안한 마음을 표현하고 대안을 제시하는 배려의 화법"
       },
       {
         title: "칭찬에 반응하기 (자연스러운 반응)",
-        textbook: "A: 한국어를 참 잘하시네요.\nB: 감사합니다. 저는 한국어를 잘합니다.",
-        realKorean: "A: 어머, 한국어 발음이 정말 좋으시네요!\nB: 아니에요, 아직 많이 부족해요. 그래도 그렇게 말씀해 주시니 기분 좋네요!",
+        textbook: "A: 한국어를 참 잘하시네요.
+B: 감사합니다. 저는 한국어를 잘합니다.",
+        realKorean: "A: 어머, 한국어 발음이 정말 좋으시네요!
+B: 아니에요, 아직 많이 부족해요. 그래도 그렇게 말씀해 주시니 기분 좋네요!",
         point: "단순 인정보다 한국 특유의 겸양의 미덕과 감사함을 함께 전하는 자연스러운 대화법"
       },
       {
         title: "도움 부탁하기 (정중한 요청)",
-        textbook: "A: 이 문서를 복사해 주십시오.\nB: 알겠습니다.",
-        realKorean: "A: 선생님, 바쁘신데 죄송하지만 혹시 이 문서 한 번만 봐주실 수 있을까요?\nB: 그럼요! 지금 잠깐 시간 있으니 같이 확인해 봐요.",
+        textbook: "A: 이 문서를 복사해 주십시오.
+B: 알겠습니다.",
+        realKorean: "A: 선생님, 바쁘신데 죄송하지만 혹시 이 문서 한 번만 봐주실 수 있을까요?
+B: 그럼요! 지금 잠깐 시간 있으니 같이 확인해 봐요.",
         point: "상대방의 상황을 먼저 살피며 부담을 주지 않게 완곡히 청하는 사회적 담화 기술"
       }
     ]
@@ -3616,6 +3757,7 @@ const DAMI_DATA = {
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initMobileMenu();
+  initAboutVideo();
   renderProfileCards();
   renderPhilosophy();
   initTodaysKorean();
@@ -3750,7 +3892,8 @@ function initTodaysKorean() {
     exprEl.textContent = item.expression;
     pronEl.textContent = item.pronunciation;
     meanEl.textContent = item.meaning;
-    exEl.innerHTML = item.example.replace(/\n/g, '<br>');
+    exEl.innerHTML = item.example.replace(/
+/g, '<br>');
   }
 
   // 초기 표현 표시
@@ -3891,7 +4034,8 @@ function renderChunks() {
       <p class="chunk-desc">${chunk.desc}</p>
       <div class="chunk-dialogue-box">
         <span class="chunk-dialogue-tag">실전 대화</span>
-        <div class="chunk-dialogue-text">${chunk.dialogue.replace(/\n/g, '<br>')}</div>
+        <div class="chunk-dialogue-text">${chunk.dialogue.replace(/
+/g, '<br>')}</div>
       </div>
     </div>
   `).join('');
@@ -3919,11 +4063,13 @@ function renderDiscourse() {
       <div class="discourse-compare-grid">
         <div class="discourse-box textbook-box">
           <span class="box-badge tb-badge">교재의 딱딱한 문장</span>
-          <p class="box-text">${topic.textbook.replace(/\n/g, '<br>')}</p>
+          <p class="box-text">${topic.textbook.replace(/
+/g, '<br>')}</p>
         </div>
         <div class="discourse-box real-box">
           <span class="box-badge real-badge">한국인의 실제 대화</span>
-          <p class="box-text">${topic.realKorean.replace(/\n/g, '<br>')}</p>
+          <p class="box-text">${topic.realKorean.replace(/
+/g, '<br>')}</p>
         </div>
       </div>
       <div class="discourse-point">
@@ -4389,6 +4535,25 @@ function speakKorean(text) {
   window.speechSynthesis.speak(utterance);
 }
 
-</script>
+/* ==========================================================================
+   15. 김다미 선생님 시그니처 인트로 비디오 사운드 토글
+   ========================================================================== */
+function initAboutVideo() {
+  const video = document.getElementById('damiIntroVideo');
+  const soundBtn = document.getElementById('videoSoundBtn');
+  if (!video || !soundBtn) return;
+
+  soundBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    const soundIcon = soundBtn.querySelector('.sound-icon');
+    if (soundIcon) {
+      soundIcon.textContent = video.muted ? '🔇' : '🔊';
+    }
+    soundBtn.setAttribute('title', video.muted ? '소리 켜기' : '소리 끄기');
+  });
+}
+
+
+  </script>
 </body>
 </html>
