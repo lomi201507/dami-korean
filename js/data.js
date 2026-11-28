@@ -551,7 +551,8 @@ const DAMI_DATA = {
         "단계별 단서 수집 & 탐정 노트 스티커 시각화",
         "황금 티켓 점수 획득 & 교사용 결과 리포트"
       ],
-      url: "apps/hidden-meaning/index.html",
+      url: "https://lomi201507.github.io/room-escape1-/",
+      repoUrl: "https://github.com/lomi201507/room-escape1-",
       icon: "🔑",
       status: "Live Active",
       active: true
