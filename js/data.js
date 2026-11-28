@@ -558,23 +558,24 @@ const DAMI_DATA = {
       active: true
     },
     {
-      id: "app-slot-3",
-      badge: "준비 중",
+      id: "app-extreme-parttime",
+      badge: "실전 상황 추리 롤플레잉",
       badgeColor: "indigo",
-      level: "Dami Web App #03",
-      title: "실전 생활 한국어 상황별 시뮬레이터",
-      edition: "Interactive Lab",
-      subtitle: "식당 주문부터 회사 업무까지 가상으로 체험하는 대화 연습",
-      desc: "실제 한국 생활과 비즈니스 현장에서 마주하는 돌발 상황을 가상으로 시뮬레이션하고 맞춤형 팁을 얻는 인터랙티브 도구입니다. 세 번째 웹 앱이 곧 공개됩니다.",
+      level: "중·고급 · 실전 한국 생활 & 회화",
+      title: "극한알바 : 수상한 치킨집",
+      edition: "극한알바 시리즈 EP.01",
+      subtitle: "치킨집 아르바이트를 하며 수상한 단서를 수사하는 인터랙티브 한국어 게임",
+      desc: "외국인 학습자가 한국 치킨집 아르바이트생이 되어 손님을 응대하고 한국어 표현을 구사하면서, 가게에 얽힌 수상한 비밀 단서를 찾아 수사하는 몰입형 게이미피케이션 학습 도구입니다. 손님 만족도, 수사 노트, 표현 도움말이 탑재되어 있습니다.",
       features: [
-        "현실감 넘치는 상황별 인터랙션",
-        "상황별 필수 표현 및 꿀팁 제공",
-        "모바일 & PC 완벽 반응형 지원"
+        "치킨집 실전 응대 & 손님 만족도 시스템",
+        "장소 탐색 지도 & 3가지 핵심 수사 단서 수집",
+        "상황별 필수 표현 도움말 & 수사 노트"
       ],
-      url: "",
-      icon: "🎯",
-      status: "Coming Soon",
-      active: false
+      url: "https://lomi201507.github.io/korean-interactive_extream01/",
+      repoUrl: "https://github.com/lomi201507/korean-interactive_extream01",
+      icon: "🍗",
+      status: "Live Active",
+      active: true
     }
   ],
 
