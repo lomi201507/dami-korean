@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRollingPapers();
   renderAIEducation();
   renderStorybooks();
+  renderWebApps();
   renderBooks();
   initModal();
   initContactForm();
@@ -614,7 +615,111 @@ function closeStorybookModal() {
 }
 
 /* ==========================================================================
-   12. DAMI Korean Books (교재 라인업 + Coming Soon)
+   12. DAMI Interactive Lab (한국어 웹 앱 쇼케이스)
+   ========================================================================== */
+function renderWebApps() {
+  const container = document.getElementById('webAppsGrid');
+  if (!container || !DAMI_DATA.webApps) return;
+
+  container.innerHTML = DAMI_DATA.webApps.map(app => `
+    <div class="webapp-card ${app.active ? 'webapp-card-active' : 'webapp-card-pending'}" id="${app.id}">
+      <div class="webapp-card-header">
+        <div class="webapp-badge-group">
+          <span class="webapp-badge webapp-badge-${app.badgeColor}">${app.badge}</span>
+          <span class="webapp-level-tag">${app.level}</span>
+        </div>
+        <div class="webapp-icon-box">${app.icon}</div>
+      </div>
+
+      <div class="webapp-card-body">
+        <div class="webapp-title-wrap">
+          <h3 class="webapp-title">${app.title}</h3>
+          <span class="webapp-edition">${app.edition}</span>
+        </div>
+        <p class="webapp-subtitle">${app.subtitle}</p>
+        <p class="webapp-desc">${app.desc}</p>
+
+        <div class="webapp-features-box">
+          <span class="webapp-features-title">주요 인터랙션 & 기능</span>
+          <ul class="webapp-features-list">
+            ${app.features.map(f => `
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>${f}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <div class="webapp-card-footer">
+        ${app.active ? `
+          <button class="btn btn-primary webapp-launch-btn" onclick="openAppModal('${app.id}')">
+            <span>🚀 라이브 앱 체험하기</span>
+          </button>
+          <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline webapp-external-btn" title="새 탭에서 전체 화면으로 열기">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>새 탭</span>
+          </a>
+        ` : `
+          <div class="webapp-coming-soon-btn">
+            <span>✨ 두 번째 / 세 번째 웹앱 연결 준비 중</span>
+          </div>
+        `}
+      </div>
+    </div>
+  `).join('');
+}
+
+function openAppModal(appId) {
+  const app = DAMI_DATA.webApps.find(a => a.id === appId);
+  if (!app || !app.url) return;
+
+  const modal = document.getElementById('appModal');
+  const titleEl = document.getElementById('appModalTitle');
+  const badgeEl = document.getElementById('appModalBadge');
+  const extBtn = document.getElementById('appModalExternalBtn');
+  const iframe = document.getElementById('appModalIframe');
+  const spinner = document.getElementById('appLoadingSpinner');
+
+  if (!modal || !iframe) return;
+
+  titleEl.textContent = app.title;
+  badgeEl.textContent = app.edition || 'Interactive Web App';
+  extBtn.href = app.url;
+
+  // 로딩 스피너 표시
+  if (spinner) spinner.style.display = 'flex';
+
+  iframe.onload = () => {
+    if (spinner) spinner.style.display = 'none';
+  };
+
+  iframe.src = app.url;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAppModal() {
+  const modal = document.getElementById('appModal');
+  const iframe = document.getElementById('appModalIframe');
+  if (!modal) return;
+
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  if (iframe) iframe.src = ''; // 리소스 및 오디오 중단
+  document.body.style.overflow = '';
+}
+
+/* ==========================================================================
+   13. DAMI Korean Books (교재 라인업 + Coming Soon)
    ========================================================================== */
 function renderBooks() {
   const container = document.getElementById('booksGrid');
@@ -649,10 +754,13 @@ function initModal() {
   const sbCloseBtn = document.getElementById('storybookCloseBtn');
   const paperModal = document.getElementById('paperModal');
   const paperCloseBtn = document.getElementById('paperCloseBtn');
+  const appModal = document.getElementById('appModal');
+  const appCloseBtn = document.getElementById('appModalCloseBtn');
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (sbCloseBtn) sbCloseBtn.addEventListener('click', closeStorybookModal);
   if (paperCloseBtn) paperCloseBtn.addEventListener('click', closePaperModal);
+  if (appCloseBtn) appCloseBtn.addEventListener('click', closeAppModal);
 
   // 모달 배경 클릭 시 닫기
   if (modal) {
@@ -670,6 +778,11 @@ function initModal() {
       if (e.target === paperModal) closePaperModal();
     });
   }
+  if (appModal) {
+    appModal.addEventListener('click', (e) => {
+      if (e.target === appModal) closeAppModal();
+    });
+  }
 
   // ESC 키로 닫기
   document.addEventListener('keydown', (e) => {
@@ -677,6 +790,7 @@ function initModal() {
       if (modal && modal.classList.contains('open')) closeModal();
       if (sbModal && sbModal.classList.contains('open')) closeStorybookModal();
       if (paperModal && paperModal.classList.contains('open')) closePaperModal();
+      if (appModal && appModal.classList.contains('open')) closeAppModal();
     }
   });
 }

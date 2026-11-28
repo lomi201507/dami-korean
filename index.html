@@ -26,8 +26,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <!-- Stylesheet (Cache Busting v2.2) -->
-  <link rel="stylesheet" href="css/styles.css?v=2.2">
+  <!-- Stylesheet (Cache Busting v2.4) -->
+  <link rel="stylesheet" href="css/styles.css?v=2.4">
 </head>
 <body>
 
@@ -48,6 +48,7 @@
         <a href="#learn" class="nav-link">Learn Korean</a>
         <a href="#chunks" class="nav-link">Chunks</a>
         <a href="#storybook" class="nav-link">Storybook</a>
+        <a href="#webapps" class="nav-link">Interactive Lab</a>
         <a href="#reviews" class="nav-link">Reviews & Letters</a>
         <a href="#ai-korean" class="nav-link">AI × Korean</a>
         <a href="#books" class="nav-link">Books</a>
@@ -372,7 +373,27 @@
     </section>
 
     <!-- =========================================================================
-         12. DAMI KOREAN BOOKS (PRD [19. KOREAN BOOKS])
+         12. DAMI INTERACTIVE LAB (김다미 선생님의 한국어 웹 앱 쇼케이스)
+         ========================================================================= -->
+    <section class="webapps-section" id="webapps">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">DAMI Interactive Lab · 실전 에듀테크</span>
+          <h2 class="section-title">김다미 선생님의 한국어 웹 앱 (Web Apps)</h2>
+          <p class="section-desc">
+            교재와 강의를 넘어, 학습자가 직접 단서를 공유하고 소통하며 자연스럽게 익히는 인터랙티브 한국어 활동 도구입니다.<br>
+            <strong>[🚀 라이브 앱 체험하기]</strong>를 누르시면 사이트 내에서 즉시 실행해 보실 수 있습니다.
+          </p>
+        </div>
+
+        <div class="webapps-grid" id="webAppsGrid">
+          <!-- Rendered dynamically by main.js from DAMI_DATA.webApps -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         13. DAMI KOREAN BOOKS (PRD [19. KOREAN BOOKS])
          ========================================================================= -->
     <section class="books-section" id="books">
       <div class="container">
@@ -527,8 +548,38 @@
     </div>
   </div>
 
-  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.3) -->
-  <script src="js/data.js?v=2.3"></script>
-  <script src="js/main.js?v=2.3"></script>
+  <!-- =========================================================================
+       17. INTERACTIVE APP VIEWER MODAL (DAMI LAB)
+       ========================================================================= -->
+  <div class="modal-overlay app-modal-overlay" id="appModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container modal-container-app">
+      <div class="app-modal-header">
+        <div class="app-modal-title-group">
+          <span class="app-modal-badge" id="appModalBadge">Interactive Web App</span>
+          <h3 class="app-modal-title" id="appModalTitle">단톡방에서 나만 공지를 못 봤다</h3>
+        </div>
+        <div class="app-modal-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="app-modal-external-btn" id="appModalExternalBtn" title="새 창에서 크게 보기">
+            <span>새 탭에서 열기</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button class="modal-close" id="appModalCloseBtn" aria-label="닫기">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="app-modal-body">
+        <div class="app-loading-spinner" id="appLoadingSpinner">
+          <div class="spinner-ring"></div>
+          <p>웹 앱을 안전하게 불러오는 중입니다...</p>
+        </div>
+        <iframe id="appModalIframe" class="app-modal-iframe" src="" allow="autoplay; microphone; clipboard-write;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.4) -->
+  <script src="js/data.js?v=2.4"></script>
+  <script src="js/main.js?v=2.4"></script>
 </body>
 </html>

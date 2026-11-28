@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <!-- Stylesheet (Cache Busting v2.3) -->
+  <!-- Stylesheet (Cache Busting v2.4) -->
   <style>
 /* ==========================================================================
    DAMI KOREAN - Official Brand Stylesheet
@@ -1972,6 +1972,379 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   14.8. DAMI INTERACTIVE LAB & WEB APPS SHOWCASE
+   -------------------------------------------------------------------------- */
+.webapps-section {
+  padding: 96px 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.webapps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.webapp-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.webapp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -6px rgba(30, 41, 59, 0.12);
+  border-color: var(--coral-main);
+}
+
+.webapp-card-active {
+  border: 2px solid rgba(232, 122, 93, 0.45);
+  box-shadow: 0 10px 25px -5px rgba(232, 122, 93, 0.1);
+}
+
+.webapp-card-pending {
+  background: #FCFCFA;
+  opacity: 0.94;
+}
+
+.webapp-card-header {
+  padding: 24px 24px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.webapp-badge-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.webapp-badge {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: 0.02em;
+}
+
+.webapp-badge-coral {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.webapp-badge-teal {
+  background: #E0F2FE;
+  color: #0284C7;
+}
+
+.webapp-badge-indigo {
+  background: #EDE9FE;
+  color: #7C3AED;
+}
+
+.webapp-level-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.webapp-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--coral-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.webapp-card-body {
+  padding: 0 24px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.webapp-title-wrap {
+  margin-bottom: 8px;
+}
+
+.webapp-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--navy-deep);
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.webapp-edition {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--coral-main);
+  background: rgba(232, 122, 93, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.webapp-subtitle {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--navy-deep);
+  margin-bottom: 12px;
+  line-height: 1.45;
+}
+
+.webapp-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.webapp-features-box {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-top: auto;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.webapp-features-title {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--navy-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.webapp-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.webapp-features-list li {
+  font-size: 0.84rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.webapp-features-list li svg {
+  color: #10B981;
+  flex-shrink: 0;
+}
+
+.webapp-card-footer {
+  padding: 16px 24px 24px;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid var(--border-light);
+}
+
+.webapp-launch-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+}
+
+.webapp-external-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  color: var(--navy-deep);
+  border: 1px solid var(--border-light);
+  background: #FFF;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.webapp-external-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--coral-main);
+  border-color: var(--coral-main);
+}
+
+.webapp-coming-soon-btn {
+  width: 100%;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: #F1F5F9;
+  border-radius: var(--radius-pill);
+  border: 1px dashed #CBD5E1;
+}
+
+/* ==========================================================================
+   INTERACTIVE APP MODAL
+   ========================================================================== */
+.modal-container-app {
+  max-width: 1080px;
+  width: 95%;
+  height: 88vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  background: #0F172A;
+}
+
+.app-modal-header {
+  background: #1E293B;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFF;
+}
+
+.app-modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-modal-badge {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  background: var(--coral-main);
+  color: #FFF;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.app-modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFF;
+  margin: 0;
+}
+
+.app-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-modal-external-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.app-modal-external-btn:hover {
+  background: var(--coral-main);
+  color: #FFF;
+}
+
+.app-modal-header .modal-close {
+  position: static;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-fast);
+}
+
+.app-modal-header .modal-close:hover {
+  background: #EF4444;
+  color: #FFF;
+}
+
+.app-modal-body {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 68px);
+  background: #0F172A;
+}
+
+.app-modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.app-loading-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #0F172A;
+  color: #94A3B8;
+  font-size: 0.95rem;
+  z-index: 2;
+}
+
+.spinner-ring {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--coral-main);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
    15. DAMI KOREAN BOOKS SECTION
    -------------------------------------------------------------------------- */
 .books-section {
@@ -2457,6 +2830,10 @@ button {
   .books-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .webapps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -2535,6 +2912,16 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .webapps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-container-app {
+    width: 100%;
+    height: 94vh;
+    border-radius: 0;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
@@ -2569,6 +2956,7 @@ button {
         <a href="#learn" class="nav-link">Learn Korean</a>
         <a href="#chunks" class="nav-link">Chunks</a>
         <a href="#storybook" class="nav-link">Storybook</a>
+        <a href="#webapps" class="nav-link">Interactive Lab</a>
         <a href="#reviews" class="nav-link">Reviews & Letters</a>
         <a href="#ai-korean" class="nav-link">AI × Korean</a>
         <a href="#books" class="nav-link">Books</a>
@@ -2893,7 +3281,27 @@ button {
     </section>
 
     <!-- =========================================================================
-         12. DAMI KOREAN BOOKS (PRD [19. KOREAN BOOKS])
+         12. DAMI INTERACTIVE LAB (김다미 선생님의 한국어 웹 앱 쇼케이스)
+         ========================================================================= -->
+    <section class="webapps-section" id="webapps">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">DAMI Interactive Lab · 실전 에듀테크</span>
+          <h2 class="section-title">김다미 선생님의 한국어 웹 앱 (Web Apps)</h2>
+          <p class="section-desc">
+            교재와 강의를 넘어, 학습자가 직접 단서를 공유하고 소통하며 자연스럽게 익히는 인터랙티브 한국어 활동 도구입니다.<br>
+            <strong>[🚀 라이브 앱 체험하기]</strong>를 누르시면 사이트 내에서 즉시 실행해 보실 수 있습니다.
+          </p>
+        </div>
+
+        <div class="webapps-grid" id="webAppsGrid">
+          <!-- Rendered dynamically by main.js from DAMI_DATA.webApps -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         13. DAMI KOREAN BOOKS (PRD [19. KOREAN BOOKS])
          ========================================================================= -->
     <section class="books-section" id="books">
       <div class="container">
@@ -3048,7 +3456,37 @@ button {
     </div>
   </div>
 
-  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.3) -->
+  <!-- =========================================================================
+       17. INTERACTIVE APP VIEWER MODAL (DAMI LAB)
+       ========================================================================= -->
+  <div class="modal-overlay app-modal-overlay" id="appModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container modal-container-app">
+      <div class="app-modal-header">
+        <div class="app-modal-title-group">
+          <span class="app-modal-badge" id="appModalBadge">Interactive Web App</span>
+          <h3 class="app-modal-title" id="appModalTitle">단톡방에서 나만 공지를 못 봤다</h3>
+        </div>
+        <div class="app-modal-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="app-modal-external-btn" id="appModalExternalBtn" title="새 창에서 크게 보기">
+            <span>새 탭에서 열기</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button class="modal-close" id="appModalCloseBtn" aria-label="닫기">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="app-modal-body">
+        <div class="app-loading-spinner" id="appLoadingSpinner">
+          <div class="spinner-ring"></div>
+          <p>웹 앱을 안전하게 불러오는 중입니다...</p>
+        </div>
+        <iframe id="appModalIframe" class="app-modal-iframe" src="" allow="autoplay; microphone; clipboard-write;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.4) -->
   <script>
 /**
  * DAMI KOREAN - Official Learning Data Module
@@ -3593,6 +4031,67 @@ B: 그럼요! 지금 잠깐 시간 있으니 같이 확인해 봐요.",
     ]
   },
 
+  // 11. DAMI Interactive Lab (Web Apps & EdTech Tools)
+  webApps: [
+    {
+      id: "app-group-talk",
+      badge: "협동 추리 롤플레잉",
+      badgeColor: "coral",
+      level: "중급 · 실전 의사소통",
+      title: "단톡방에서 나만 공지를 못 봤다",
+      edition: "네온 B (Neon B)",
+      subtitle: "단서를 귓속말로 공유하며 범인을 찾는 실시간 한국어 추리 활동 웹 앱",
+      desc: "외국인 학습자들이 단톡방 속 비밀 단서를 확인하고, 서로 귓속말로 정보를 교환하며 추리하는 몰입형 수업 도구입니다. 15분 타임어택 타이머, 학생별 역할 카드, 실시간 팀 순위표 및 교사용 관제 모드가 탑재되어 있습니다.",
+      features: [
+        "15분 타임어택 협동 추리 롤플레잉",
+        "개별 역할 카드 & 비밀 단서 확인",
+        "실시간 팀 순위표 & 교사용 관제 도구"
+      ],
+      url: "https://group-talk-notice.vercel.app/mid/#",
+      icon: "💬",
+      status: "Live Active",
+      active: true
+    },
+    {
+      id: "app-slot-2",
+      badge: "준비 중",
+      badgeColor: "teal",
+      level: "Dami Web App #02",
+      title: "한국어 덩어리(Chunk) 스피드 퀴즈",
+      edition: "Interactive Lab",
+      subtitle: "단어가 아닌 덩어리로 말하는 실전 한국어 회화 트레이너",
+      desc: "다미 선생님의 2,500시간 티칭 노하우를 담은 덩어리(Chunk) 중심 스피드 문장 완성 웹 앱입니다. 두 번째 웹 앱이 곧 공개됩니다.",
+      features: [
+        "레벨별 맞춤 덩어리 스피드 퀴즈",
+        "자연스러운 한국어 발음 음성 지원",
+        "학습 결과 및 취약점 분석 리포트"
+      ],
+      url: "",
+      icon: "⚡",
+      status: "Coming Soon",
+      active: false
+    },
+    {
+      id: "app-slot-3",
+      badge: "준비 중",
+      badgeColor: "indigo",
+      level: "Dami Web App #03",
+      title: "실전 생활 한국어 상황별 시뮬레이터",
+      edition: "Interactive Lab",
+      subtitle: "식당 주문부터 회사 업무까지 가상으로 체험하는 대화 연습",
+      desc: "실제 한국 생활과 비즈니스 현장에서 마주하는 돌발 상황을 가상으로 시뮬레이션하고 맞춤형 팁을 얻는 인터랙티브 도구입니다. 세 번째 웹 앱이 곧 공개됩니다.",
+      features: [
+        "현실감 넘치는 상황별 인터랙션",
+        "상황별 필수 표현 및 꿀팁 제공",
+        "모바일 & PC 완벽 반응형 지원"
+      ],
+      url: "",
+      icon: "🎯",
+      status: "Coming Soon",
+      active: false
+    }
+  ],
+
   // 9. DAMI Korean Books (PRD [19. KOREAN BOOKS])
   books: {
     title: "DAMI Korean Books",
@@ -3768,6 +4267,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRollingPapers();
   renderAIEducation();
   renderStorybooks();
+  renderWebApps();
   renderBooks();
   initModal();
   initContactForm();
@@ -4368,7 +4868,111 @@ function closeStorybookModal() {
 }
 
 /* ==========================================================================
-   12. DAMI Korean Books (교재 라인업 + Coming Soon)
+   12. DAMI Interactive Lab (한국어 웹 앱 쇼케이스)
+   ========================================================================== */
+function renderWebApps() {
+  const container = document.getElementById('webAppsGrid');
+  if (!container || !DAMI_DATA.webApps) return;
+
+  container.innerHTML = DAMI_DATA.webApps.map(app => `
+    <div class="webapp-card ${app.active ? 'webapp-card-active' : 'webapp-card-pending'}" id="${app.id}">
+      <div class="webapp-card-header">
+        <div class="webapp-badge-group">
+          <span class="webapp-badge webapp-badge-${app.badgeColor}">${app.badge}</span>
+          <span class="webapp-level-tag">${app.level}</span>
+        </div>
+        <div class="webapp-icon-box">${app.icon}</div>
+      </div>
+
+      <div class="webapp-card-body">
+        <div class="webapp-title-wrap">
+          <h3 class="webapp-title">${app.title}</h3>
+          <span class="webapp-edition">${app.edition}</span>
+        </div>
+        <p class="webapp-subtitle">${app.subtitle}</p>
+        <p class="webapp-desc">${app.desc}</p>
+
+        <div class="webapp-features-box">
+          <span class="webapp-features-title">주요 인터랙션 & 기능</span>
+          <ul class="webapp-features-list">
+            ${app.features.map(f => `
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>${f}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <div class="webapp-card-footer">
+        ${app.active ? `
+          <button class="btn btn-primary webapp-launch-btn" onclick="openAppModal('${app.id}')">
+            <span>🚀 라이브 앱 체험하기</span>
+          </button>
+          <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline webapp-external-btn" title="새 탭에서 전체 화면으로 열기">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>새 탭</span>
+          </a>
+        ` : `
+          <div class="webapp-coming-soon-btn">
+            <span>✨ 두 번째 / 세 번째 웹앱 연결 준비 중</span>
+          </div>
+        `}
+      </div>
+    </div>
+  `).join('');
+}
+
+function openAppModal(appId) {
+  const app = DAMI_DATA.webApps.find(a => a.id === appId);
+  if (!app || !app.url) return;
+
+  const modal = document.getElementById('appModal');
+  const titleEl = document.getElementById('appModalTitle');
+  const badgeEl = document.getElementById('appModalBadge');
+  const extBtn = document.getElementById('appModalExternalBtn');
+  const iframe = document.getElementById('appModalIframe');
+  const spinner = document.getElementById('appLoadingSpinner');
+
+  if (!modal || !iframe) return;
+
+  titleEl.textContent = app.title;
+  badgeEl.textContent = app.edition || 'Interactive Web App';
+  extBtn.href = app.url;
+
+  // 로딩 스피너 표시
+  if (spinner) spinner.style.display = 'flex';
+
+  iframe.onload = () => {
+    if (spinner) spinner.style.display = 'none';
+  };
+
+  iframe.src = app.url;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAppModal() {
+  const modal = document.getElementById('appModal');
+  const iframe = document.getElementById('appModalIframe');
+  if (!modal) return;
+
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  if (iframe) iframe.src = ''; // 리소스 및 오디오 중단
+  document.body.style.overflow = '';
+}
+
+/* ==========================================================================
+   13. DAMI Korean Books (교재 라인업 + Coming Soon)
    ========================================================================== */
 function renderBooks() {
   const container = document.getElementById('booksGrid');
@@ -4403,10 +5007,13 @@ function initModal() {
   const sbCloseBtn = document.getElementById('storybookCloseBtn');
   const paperModal = document.getElementById('paperModal');
   const paperCloseBtn = document.getElementById('paperCloseBtn');
+  const appModal = document.getElementById('appModal');
+  const appCloseBtn = document.getElementById('appModalCloseBtn');
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (sbCloseBtn) sbCloseBtn.addEventListener('click', closeStorybookModal);
   if (paperCloseBtn) paperCloseBtn.addEventListener('click', closePaperModal);
+  if (appCloseBtn) appCloseBtn.addEventListener('click', closeAppModal);
 
   // 모달 배경 클릭 시 닫기
   if (modal) {
@@ -4424,6 +5031,11 @@ function initModal() {
       if (e.target === paperModal) closePaperModal();
     });
   }
+  if (appModal) {
+    appModal.addEventListener('click', (e) => {
+      if (e.target === appModal) closeAppModal();
+    });
+  }
 
   // ESC 키로 닫기
   document.addEventListener('keydown', (e) => {
@@ -4431,6 +5043,7 @@ function initModal() {
       if (modal && modal.classList.contains('open')) closeModal();
       if (sbModal && sbModal.classList.contains('open')) closeStorybookModal();
       if (paperModal && paperModal.classList.contains('open')) closePaperModal();
+      if (appModal && appModal.classList.contains('open')) closeAppModal();
     }
   });
 }

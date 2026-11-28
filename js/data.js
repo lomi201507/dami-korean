@@ -516,6 +516,67 @@ const DAMI_DATA = {
     ]
   },
 
+  // 11. DAMI Interactive Lab (Web Apps & EdTech Tools)
+  webApps: [
+    {
+      id: "app-group-talk",
+      badge: "협동 추리 롤플레잉",
+      badgeColor: "coral",
+      level: "중급 · 실전 의사소통",
+      title: "단톡방에서 나만 공지를 못 봤다",
+      edition: "네온 B (Neon B)",
+      subtitle: "단서를 귓속말로 공유하며 범인을 찾는 실시간 한국어 추리 활동 웹 앱",
+      desc: "외국인 학습자들이 단톡방 속 비밀 단서를 확인하고, 서로 귓속말로 정보를 교환하며 추리하는 몰입형 수업 도구입니다. 15분 타임어택 타이머, 학생별 역할 카드, 실시간 팀 순위표 및 교사용 관제 모드가 탑재되어 있습니다.",
+      features: [
+        "15분 타임어택 협동 추리 롤플레잉",
+        "개별 역할 카드 & 비밀 단서 확인",
+        "실시간 팀 순위표 & 교사용 관제 도구"
+      ],
+      url: "https://group-talk-notice.vercel.app/mid/#",
+      icon: "💬",
+      status: "Live Active",
+      active: true
+    },
+    {
+      id: "app-slot-2",
+      badge: "준비 중",
+      badgeColor: "teal",
+      level: "Dami Web App #02",
+      title: "한국어 덩어리(Chunk) 스피드 퀴즈",
+      edition: "Interactive Lab",
+      subtitle: "단어가 아닌 덩어리로 말하는 실전 한국어 회화 트레이너",
+      desc: "다미 선생님의 2,500시간 티칭 노하우를 담은 덩어리(Chunk) 중심 스피드 문장 완성 웹 앱입니다. 두 번째 웹 앱이 곧 공개됩니다.",
+      features: [
+        "레벨별 맞춤 덩어리 스피드 퀴즈",
+        "자연스러운 한국어 발음 음성 지원",
+        "학습 결과 및 취약점 분석 리포트"
+      ],
+      url: "",
+      icon: "⚡",
+      status: "Coming Soon",
+      active: false
+    },
+    {
+      id: "app-slot-3",
+      badge: "준비 중",
+      badgeColor: "indigo",
+      level: "Dami Web App #03",
+      title: "실전 생활 한국어 상황별 시뮬레이터",
+      edition: "Interactive Lab",
+      subtitle: "식당 주문부터 회사 업무까지 가상으로 체험하는 대화 연습",
+      desc: "실제 한국 생활과 비즈니스 현장에서 마주하는 돌발 상황을 가상으로 시뮬레이션하고 맞춤형 팁을 얻는 인터랙티브 도구입니다. 세 번째 웹 앱이 곧 공개됩니다.",
+      features: [
+        "현실감 넘치는 상황별 인터랙션",
+        "상황별 필수 표현 및 꿀팁 제공",
+        "모바일 & PC 완벽 반응형 지원"
+      ],
+      url: "",
+      icon: "🎯",
+      status: "Coming Soon",
+      active: false
+    }
+  ],
+
   // 9. DAMI Korean Books (PRD [19. KOREAN BOOKS])
   books: {
     title: "DAMI Korean Books",
