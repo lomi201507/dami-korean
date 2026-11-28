@@ -507,9 +507,23 @@ function openStorybookModal(story) {
       <p class="sb-modal-summary">${story.summary}</p>
     </div>
 
-    <!-- 1. 만화 웹툰 이미지 뷰어 -->
-    <div class="sb-viewer-img-box">
-      <img src="${story.image}" alt="${story.title}" class="sb-viewer-img">
+    <!-- 1. 만화 웹툰 이미지 뷰어 (세로 스크롤 웹툰 스트림) -->
+    <div class="sb-webtoon-viewer-wrap">
+      <div class="sb-webtoon-toolbar">
+        <span class="sb-webtoon-hint">📱 화면을 위아래로 편안하게 스크롤하여 웹툰을 감상하세요!</span>
+      </div>
+      <div class="sb-webtoon-stream">
+        ${(story.cuts && story.cuts.length > 0) ? story.cuts.map((cut, cIdx) => `
+          <div class="sb-webtoon-cut-box">
+            <span class="sb-cut-num">CUT #${cIdx + 1}</span>
+            <img src="${cut}" alt="${story.title} 컷 ${cIdx + 1}" class="sb-webtoon-cut-img" loading="lazy">
+          </div>
+        `).join('') : `
+          <div class="sb-viewer-img-box">
+            <img src="${story.image}" alt="${story.title}" class="sb-viewer-img">
+          </div>
+        `}
+      </div>
     </div>
 
     <!-- 2. 린의 단서 수첩 -->

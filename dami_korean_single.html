@@ -1746,6 +1746,75 @@ button {
   color: var(--text-muted);
 }
 
+.sb-webtoon-viewer-wrap {
+  margin-bottom: 36px;
+  background: #0f172a;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sb-webtoon-toolbar {
+  padding: 12px 20px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.sb-webtoon-hint {
+  font-size: 0.9rem;
+  color: #38bdf8;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sb-webtoon-stream {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sb-webtoon-cut-box {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sb-webtoon-cut-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.sb-cut-num {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  color: #f8fafc;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.sb-webtoon-cut-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .sb-viewer-img-box {
   background: #F8FAFC;
   border-radius: var(--radius-lg);
@@ -2935,7 +3004,7 @@ button {
   }
 }
 
-  </style>
+</style>
 </head>
 <body>
 
@@ -4171,6 +4240,16 @@ B: 그럼요! 지금 잠깐 시간 있으니 같이 확인해 봐요.",
       level: "초급~중급 추천",
       title: "새벽 3시, 편의점의 우유 할아버지",
       image: "assets/stories/ep01.jpg",
+      cuts: [
+        "assets/stories/ep01_cuts/cut_01.jpg",
+        "assets/stories/ep01_cuts/cut_02.jpg",
+        "assets/stories/ep01_cuts/cut_03.jpg",
+        "assets/stories/ep01_cuts/cut_04.jpg",
+        "assets/stories/ep01_cuts/cut_05.jpg",
+        "assets/stories/ep01_cuts/cut_06.jpg",
+        "assets/stories/ep01_cuts/cut_07.jpg",
+        "assets/stories/ep01_cuts/cut_08.jpg"
+      ],
       summary: "매일 새벽 3시, 편의점에서 흰 우유를 사서 마시지 않고 벤치에 두고 가시는 할아버지. 린과 함께 단서를 찾아 사연을 추리해 보세요!",
       characters: [
         { name: "린 (Rin)", role: "편의점 아르바이트생 · 관찰력이 뛰어남" },
@@ -4212,6 +4291,17 @@ B: 그럼요! 지금 잠깐 시간 있으니 같이 확인해 봐요.",
       level: "초급~중급 추천",
       title: "새벽 3시의 우유 - 그다음 이야기 -",
       image: "assets/stories/ep02.jpg",
+      cuts: [
+        "assets/stories/ep02_cuts/cut_01.jpg",
+        "assets/stories/ep02_cuts/cut_02.jpg",
+        "assets/stories/ep02_cuts/cut_03.jpg",
+        "assets/stories/ep02_cuts/cut_04.jpg",
+        "assets/stories/ep02_cuts/cut_05.jpg",
+        "assets/stories/ep02_cuts/cut_06.jpg",
+        "assets/stories/ep02_cuts/cut_07.jpg",
+        "assets/stories/ep02_cuts/cut_08.jpg",
+        "assets/stories/ep02_cuts/cut_09.jpg"
+      ],
       summary: "골목에서 우연히 들려온 대화! 할아버지가 매일 새벽 우유를 벤치에 두고 가신 진짜 감동적인 사연이 밝혀집니다.",
       characters: [
         { name: "린 (Rin)", role: "새벽 편의점 아르바이트생 · 따뜻한 관찰자" },
@@ -4251,7 +4341,8 @@ B: 그럼요! 지금 잠깐 시간 있으니 같이 확인해 봐요.",
   ]
 };
 
-
+</script>
+<script>
 /**
  * DAMI KOREAN - Official Main Application Logic
  * 김다미 한국어 선생님 공식 웹사이트 프론트엔드 인터랙션 스크립트
@@ -4765,9 +4856,23 @@ function openStorybookModal(story) {
       <p class="sb-modal-summary">${story.summary}</p>
     </div>
 
-    <!-- 1. 만화 웹툰 이미지 뷰어 -->
-    <div class="sb-viewer-img-box">
-      <img src="${story.image}" alt="${story.title}" class="sb-viewer-img">
+    <!-- 1. 만화 웹툰 이미지 뷰어 (세로 스크롤 웹툰 스트림) -->
+    <div class="sb-webtoon-viewer-wrap">
+      <div class="sb-webtoon-toolbar">
+        <span class="sb-webtoon-hint">📱 화면을 위아래로 편안하게 스크롤하여 웹툰을 감상하세요!</span>
+      </div>
+      <div class="sb-webtoon-stream">
+        ${(story.cuts && story.cuts.length > 0) ? story.cuts.map((cut, cIdx) => `
+          <div class="sb-webtoon-cut-box">
+            <span class="sb-cut-num">CUT #${cIdx + 1}</span>
+            <img src="${cut}" alt="${story.title} 컷 ${cIdx + 1}" class="sb-webtoon-cut-img" loading="lazy">
+          </div>
+        `).join('') : `
+          <div class="sb-viewer-img-box">
+            <img src="${story.image}" alt="${story.title}" class="sb-viewer-img">
+          </div>
+        `}
+      </div>
     </div>
 
     <!-- 2. 린의 단서 수첩 -->
@@ -5172,6 +5277,6 @@ function initAboutVideo() {
 }
 
 
-  </script>
+</script>
 </body>
 </html>

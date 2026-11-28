@@ -653,6 +653,16 @@ const DAMI_DATA = {
       level: "초급~중급 추천",
       title: "새벽 3시, 편의점의 우유 할아버지",
       image: "assets/stories/ep01.jpg",
+      cuts: [
+        "assets/stories/ep01_cuts/cut_01.jpg",
+        "assets/stories/ep01_cuts/cut_02.jpg",
+        "assets/stories/ep01_cuts/cut_03.jpg",
+        "assets/stories/ep01_cuts/cut_04.jpg",
+        "assets/stories/ep01_cuts/cut_05.jpg",
+        "assets/stories/ep01_cuts/cut_06.jpg",
+        "assets/stories/ep01_cuts/cut_07.jpg",
+        "assets/stories/ep01_cuts/cut_08.jpg"
+      ],
       summary: "매일 새벽 3시, 편의점에서 흰 우유를 사서 마시지 않고 벤치에 두고 가시는 할아버지. 린과 함께 단서를 찾아 사연을 추리해 보세요!",
       characters: [
         { name: "린 (Rin)", role: "편의점 아르바이트생 · 관찰력이 뛰어남" },
@@ -694,6 +704,17 @@ const DAMI_DATA = {
       level: "초급~중급 추천",
       title: "새벽 3시의 우유 - 그다음 이야기 -",
       image: "assets/stories/ep02.jpg",
+      cuts: [
+        "assets/stories/ep02_cuts/cut_01.jpg",
+        "assets/stories/ep02_cuts/cut_02.jpg",
+        "assets/stories/ep02_cuts/cut_03.jpg",
+        "assets/stories/ep02_cuts/cut_04.jpg",
+        "assets/stories/ep02_cuts/cut_05.jpg",
+        "assets/stories/ep02_cuts/cut_06.jpg",
+        "assets/stories/ep02_cuts/cut_07.jpg",
+        "assets/stories/ep02_cuts/cut_08.jpg",
+        "assets/stories/ep02_cuts/cut_09.jpg"
+      ],
       summary: "골목에서 우연히 들려온 대화! 할아버지가 매일 새벽 우유를 벤치에 두고 가신 진짜 감동적인 사연이 밝혀집니다.",
       characters: [
         { name: "린 (Rin)", role: "새벽 편의점 아르바이트생 · 따뜻한 관찰자" },
