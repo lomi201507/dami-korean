@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <!-- Stylesheet (Cache Busting v2.4) -->
+  <!-- Stylesheet (Cache Busting v2.5) -->
   <style>
 /* ==========================================================================
    DAMI KOREAN - Official Brand Stylesheet
@@ -2955,7 +2955,7 @@ button {
         <a href="#philosophy" class="nav-link">Philosophy</a>
         <a href="#learn" class="nav-link">Learn Korean</a>
         <a href="#chunks" class="nav-link">Chunks</a>
-        <a href="#storybook" class="nav-link">Storybook</a>
+        <a href="#storybook" class="nav-link">웹툰 (Webtoon)</a>
         <a href="#webapps" class="nav-link">Interactive Lab</a>
         <a href="#reviews" class="nav-link">Reviews & Letters</a>
         <a href="#ai-korean" class="nav-link">AI × Korean</a>
@@ -3261,16 +3261,16 @@ button {
     </section>
 
     <!-- =========================================================================
-         11. DAMI KOREAN STORYBOOK (이야기북 시리즈)
+         11. DAMI KOREAN WEBTOON (한국어 웹툰 시리즈)
          ========================================================================= -->
     <section class="storybook-section" id="storybook">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag">Interactive Webtoon Storybook</span>
-          <h2 class="section-title">다미의 한국어 이야기북 (Storybook Series)</h2>
+          <span class="section-tag">Interactive Korean Webtoon</span>
+          <h2 class="section-title">다미의 한국어 웹툰 (Webtoon Series)</h2>
           <p class="section-desc">
-            웹툰으로 재미있게 읽고, 단서를 찾아 함께 추리하는 실전 한국어 이야기 시리즈입니다.<br>
-            이야기를 클릭하시면 만화 원본, 인터랙티브 추리 퀴즈, 핵심 어휘와 문법을 함께 공부하실 수 있습니다.
+            웹툰으로 재미있게 읽고, 단서를 찾아 함께 추리하는 실전 한국어 시리즈입니다.<br>
+            웹툰을 클릭하시면 만화 원본, 인터랙티브 추리 퀴즈, 핵심 어휘와 문법을 함께 공부하실 수 있습니다.
           </p>
         </div>
 
@@ -3398,7 +3398,7 @@ button {
           <a href="#philosophy">Teaching Philosophy</a>
           <a href="#learn">Learn Korean</a>
           <a href="#chunks">Korean Chunks</a>
-          <a href="#storybook">Korean Storybook</a>
+          <a href="#storybook">Korean Webtoon (웹툰)</a>
           <a href="#reviews">Reviews & Letters</a>
           <a href="#ai-korean">AI × Korean</a>
           <a href="#books">DAMI Books</a>
@@ -3486,7 +3486,7 @@ button {
     </div>
   </div>
 
-  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.4) -->
+  <!-- Scripts: 순수 Vanilla JavaScript (Cache Busting v2.5) -->
   <script>
 /**
  * DAMI KOREAN - Official Learning Data Module
@@ -4720,7 +4720,7 @@ function renderStorybooks() {
         <p class="sb-card-summary">${story.summary}</p>
         <div class="sb-card-footer">
           <button class="btn btn-primary btn-sm sb-read-btn" data-story-idx="${idx}">
-            <span>이야기 읽고 추리하기</span>
+            <span>웹툰 읽고 추리하기</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
@@ -4795,9 +4795,9 @@ function openStorybookModal(story) {
       <div class="sb-quiz-result" id="sbQuizResult"></div>
     </div>
 
-    <!-- 4. 이야기 속 핵심 문법 & 덩어리 표현 -->
+    <!-- 4. 웹툰 속 핵심 문법 & 덩어리 표현 -->
     <div class="sb-learning-section">
-      <h3 class="sb-section-subtitle">🎯 이 이야기에서 배운 핵심 문법</h3>
+      <h3 class="sb-section-subtitle">🎯 이 웹툰에서 배운 핵심 문법</h3>
       <div class="sb-grammar-list">
         ${story.grammarPoints.map(g => `
           <div class="sb-grammar-card">
@@ -4811,7 +4811,7 @@ function openStorybookModal(story) {
 
     <!-- 5. 필수 어휘장 -->
     <div class="sb-learning-section">
-      <h3 class="sb-section-subtitle">📚 이야기 속 필수 어휘</h3>
+      <h3 class="sb-section-subtitle">📚 웹툰 속 필수 어휘</h3>
       <div class="sb-vocab-grid">
         ${story.keyVocab.map(v => `
           <div class="sb-vocab-card">

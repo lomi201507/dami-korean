@@ -467,7 +467,7 @@ function renderStorybooks() {
         <p class="sb-card-summary">${story.summary}</p>
         <div class="sb-card-footer">
           <button class="btn btn-primary btn-sm sb-read-btn" data-story-idx="${idx}">
-            <span>이야기 읽고 추리하기</span>
+            <span>웹툰 읽고 추리하기</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
@@ -542,9 +542,9 @@ function openStorybookModal(story) {
       <div class="sb-quiz-result" id="sbQuizResult"></div>
     </div>
 
-    <!-- 4. 이야기 속 핵심 문법 & 덩어리 표현 -->
+    <!-- 4. 웹툰 속 핵심 문법 & 덩어리 표현 -->
     <div class="sb-learning-section">
-      <h3 class="sb-section-subtitle">🎯 이 이야기에서 배운 핵심 문법</h3>
+      <h3 class="sb-section-subtitle">🎯 이 웹툰에서 배운 핵심 문법</h3>
       <div class="sb-grammar-list">
         ${story.grammarPoints.map(g => `
           <div class="sb-grammar-card">
@@ -558,7 +558,7 @@ function openStorybookModal(story) {
 
     <!-- 5. 필수 어휘장 -->
     <div class="sb-learning-section">
-      <h3 class="sb-section-subtitle">📚 이야기 속 필수 어휘</h3>
+      <h3 class="sb-section-subtitle">📚 웹툰 속 필수 어휘</h3>
       <div class="sb-vocab-grid">
         ${story.keyVocab.map(v => `
           <div class="sb-vocab-card">
